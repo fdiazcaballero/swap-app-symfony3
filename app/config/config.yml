@@ -1,3 +1,4 @@
+# app/config/config.yml
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
@@ -94,3 +95,9 @@ fos_user:
 services:
     fos_user.doctrine_registry:
         alias: doctrine
+
+doctrine_migrations:
+    dir_name: "%kernel.root_dir%/DoctrineMigrations"
+    namespace: Application\Migrations
+    table_name: migration_versions
+    name: Application Migrations
