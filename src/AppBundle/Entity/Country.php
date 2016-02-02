@@ -36,38 +36,18 @@ class Country
     private $country_code;
     
     /**
-     * @var string
+     * @var boolean
      *
-     * @ORM\Column(name="country_code_alpha3", type="string", length=3)
+     * @ORM\Column(name="is_active", type="boolean", options={"default":0})
      */
-    private $country_code_alpha3;
+    private $isActive;
     
-     /**
-     * @var float
-     *
-     * @ORM\Column(name="longitude", type="float")
-     */
-    private $longitude;
+    
 
-
-    /**
-     * @var float
-     *
-     * @ORM\Column(name="latitude", type="float")
-     */
-    private $latitude;
-    
-    /**
-     * @var smallint
-     *
-     * @ORM\Column(name="phone_prefix", type="smallint")
-     */
-    private $phone_prefix;
-    
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -123,98 +103,26 @@ class Country
     }
 
     /**
-     * Set countryCodeAlpha3
+     * Set isActive
      *
-     * @param string $countryCodeAlpha3
+     * @param boolean $isActive
      *
      * @return Country
      */
-    public function setCountryCodeAlpha3($countryCodeAlpha3)
+    public function setIsActive($isActive)
     {
-        $this->country_code_alpha3 = $countryCodeAlpha3;
+        $this->isActive = $isActive;
 
         return $this;
     }
 
     /**
-     * Get countryCodeAlpha3
+     * Get isActive
      *
-     * @return string
+     * @return boolean
      */
-    public function getCountryCodeAlpha3()
+    public function getIsActive()
     {
-        return $this->country_code_alpha3;
-    }
-
-    /**
-     * Set longitude
-     *
-     * @param float $longitude
-     *
-     * @return Country
-     */
-    public function setLongitude($longitude)
-    {
-        $this->longitude = $longitude;
-
-        return $this;
-    }
-
-    /**
-     * Get longitude
-     *
-     * @return float
-     */
-    public function getLongitude()
-    {
-        return $this->longitude;
-    }
-
-    /**
-     * Set latitude
-     *
-     * @param float $latitude
-     *
-     * @return Country
-     */
-    public function setLatitude($latitude)
-    {
-        $this->latitude = $latitude;
-
-        return $this;
-    }
-
-    /**
-     * Get latitude
-     *
-     * @return float
-     */
-    public function getLatitude()
-    {
-        return $this->latitude;
-    }
-
-    /**
-     * Set phonePrefix
-     *
-     * @param integer $phonePrefix
-     *
-     * @return Country
-     */
-    public function setPhonePrefix($phonePrefix)
-    {
-        $this->phone_prefix = $phonePrefix;
-
-        return $this;
-    }
-
-    /**
-     * Get phonePrefix
-     *
-     * @return integer
-     */
-    public function getPhonePrefix()
-    {
-        return $this->phone_prefix;
+        return $this->isActive;
     }
 }

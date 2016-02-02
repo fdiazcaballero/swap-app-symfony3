@@ -36,38 +36,18 @@ class Country
     private $country_code;
     
     /**
-     * @var string
+     * @var boolean
      *
-     * @ORM\Column(name="country_code_alpha3", type="string", length=3)
+     * @ORM\Column(name="is_active", type="boolean", options={"default":0})
      */
-    private $country_code_alpha3;
+    private $isActive;
     
-     /**
-     * @var float
-     *
-     * @ORM\Column(name="longitude", type="float")
-     */
-    private $longitude;
+    
 
-
-    /**
-     * @var float
-     *
-     * @ORM\Column(name="latitude", type="float")
-     */
-    private $latitude;
-    
-    /**
-     * @var smallint
-     *
-     * @ORM\Column(name="phone_prefix", type="smallint")
-     */
-    private $phone_prefix;
-    
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -97,5 +77,28 @@ class Country
     {
         return $this->name;
     }
-}
 
+    /**
+     * Set countryCode
+     *
+     * @param string $countryCode
+     *
+     * @return Country
+     */
+    public function setCountryCode($countryCode)
+    {
+        $this->country_code = $countryCode;
+
+        return $this;
+    }
+
+    /**
+     * Get countryCode
+     *
+     * @return string
+     */
+    public function getCountryCode()
+    {
+        return $this->country_code;
+    }
+}
