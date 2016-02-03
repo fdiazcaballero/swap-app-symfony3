@@ -82,5 +82,76 @@ class State
     {
         return $this->name;
     }
-}
 
+    /**
+     * Set stateCode
+     *
+     * @param string $stateCode
+     *
+     * @return State
+     */
+    public function setStateCode($stateCode)
+    {
+        $this->state_code = $stateCode;
+
+        return $this;
+    }
+
+    /**
+     * Get stateCode
+     *
+     * @return string
+     */
+    public function getStateCode()
+    {
+        return $this->state_code;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     *
+     * @return State
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * Set country
+     *
+     * @param \AppBundle\Entity\Country $country
+     *
+     * @return State
+     */
+    public function setCountry(\AppBundle\Entity\Country $country = null)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return \AppBundle\Entity\Country
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+}

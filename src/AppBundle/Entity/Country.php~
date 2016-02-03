@@ -51,9 +51,7 @@ class Country
      public function __construct()
     {
         $this->states = new ArrayCollection();
-    }
-    
-    
+    }  
 
     /**
      * Get id
@@ -135,5 +133,39 @@ class Country
     public function getIsActive()
     {
         return $this->isActive;
+    }
+
+    /**
+     * Add state
+     *
+     * @param \AppBundle\Entity\State $state
+     *
+     * @return Country
+     */
+    public function addState(\AppBundle\Entity\State $state)
+    {
+        $this->states[] = $state;
+
+        return $this;
+    }
+
+    /**
+     * Remove state
+     *
+     * @param \AppBundle\Entity\State $state
+     */
+    public function removeState(\AppBundle\Entity\State $state)
+    {
+        $this->states->removeElement($state);
+    }
+
+    /**
+     * Get states
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getStates()
+    {
+        return $this->states;
     }
 }

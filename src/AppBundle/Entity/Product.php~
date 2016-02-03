@@ -217,4 +217,28 @@ class Product
     {
         return $this->swapPreference;
     }
+
+    /**
+     * Set hasPhoto
+     *
+     * @param boolean $hasPhoto
+     *
+     * @return Product
+     */
+    public function setHasPhoto($hasPhoto)
+    {
+        $this->hasPhoto = $hasPhoto;
+
+        return $this;
+    }
+
+    /**
+     * Get hasPhoto
+     *
+     * @return boolean
+     */
+    public function getHasPhoto()
+    {
+        return $this->hasPhoto;
+    }
 }

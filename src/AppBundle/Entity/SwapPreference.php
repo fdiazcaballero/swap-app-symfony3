@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
+use AppBundle\DBAL\Types\GeographicSwapPreferenceType;
 
 /**
  * SwapPreference
@@ -25,19 +27,28 @@ class SwapPreference
      * @ORM\OneToOne(targetEntity="Product")
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      */
-    protected $product;
+    private $product;
     
     /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="swapPreference1")
-     * @ORM\JoinColumn(name="category_preference_1", referencedColumnName="id")
+     * @ORM\JoinColumn(name="category_preference_1", nullable=false, referencedColumnName="id")
      */
-    protected $categoryPreference1;
+    private $categoryPreference1;
     
     /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="swapPreference2")
      * @ORM\JoinColumn(name="category_preference_2", nullable=true, referencedColumnName="id")
      */
-    protected $categoryPreference2;
+    private $categoryPreference2;
+    
+    /**
+     * Note, that type of a field should be same as you set in Doctrine config
+     * (in this case it is GeographicSwapPreferenceType)
+     *
+     * @ORM\Column(name="geographic_preference", type="GeographicSwapPreferenceType", nullable=false, options={"default":"ST"})
+     * @DoctrineAssert\Enum(entity="AppBundle\DBAL\Types\GeographicSwapPreferenceType")     
+     */
+    private $geographicPreference;
 
 
     /**
@@ -121,5 +132,29 @@ class SwapPreference
     public function getCategoryPreference2()
     {
         return $this->categoryPreference2;
+    }
+
+    /**
+     * Set geographicPreference
+     *
+     * @param GeographicSwapPreferenceType $geographicPreference
+     *
+     * @return SwapPreference
+     */
+    public function setGeographicPreference($geographicPreference)
+    {
+        $this->geographicPreference = $geographicPreference;
+
+        return $this;
+    }
+
+    /**
+     * Get geographicPreference
+     *
+     * @return GeographicSwapPreferenceType
+     */
+    public function getGeographicPreference()
+    {
+        return $this->geographicPreference;
     }
 }

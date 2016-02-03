@@ -54,6 +54,8 @@ doctrine:
         #https://github.com/fre5h/DoctrineEnumBundle
         mapping_types:
             enum: string
+        types:
+            GeographicSwapPreferenceType: AppBundle\DBAL\Types\GeographicSwapPreferenceType
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
         #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
