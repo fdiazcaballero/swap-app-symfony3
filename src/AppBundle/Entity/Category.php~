@@ -32,19 +32,19 @@ class Category
     /**
      * @ORM\OneToMany(targetEntity="Product", mappedBy="category")
      */
-    protected $products;
+    private $products;
     
     /**
      * @ORM\Column(name="swap_preference_1", nullable=true, options={"default":null})
      * @ORM\OneToMany(targetEntity="Category", mappedBy="categoryPreference1")
      */
-    protected $swapPreference1;
+    private $swapPreference1;
     
      /**
      * @ORM\Column(name="swap_preference_2", nullable=true, options={"default":null})
      * @ORM\OneToMany(targetEntity="Category", mappedBy="categoryPreference2")
      */
-    protected $swapPreference2;
+    private $swapPreference2;
 
     public function __construct()
     {

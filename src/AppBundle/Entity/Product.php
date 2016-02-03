@@ -17,39 +17,44 @@ class Product
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=100)
      */
-    protected $name;
+    private $name;
 
     /**
      * @ORM\Column(type="text")
      */
-    protected $description;
+    private $description;
     
     /**
      * @ORM\Column(type="datetime")
      */
-    protected $createdAt;
+    private $createdAt;
     
     /**
      * @ORM\Column(type="boolean", options={"default":0})
      */
-    protected $isFree;
+    private $isFree;
+    
+    /**
+     * @ORM\Column(type="boolean", options={"default":0})
+     */
+    private $hasPhoto;
     
     /**
      * @ORM\OneToOne(targetEntity="SwapPreference")
      * @ORM\JoinColumn(name="swap_preference_id", referencedColumnName="id")
      */
-    protected $swapPreference;
+    private $swapPreference;
     
     /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="products")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
-    protected $category;
+    private $category;
 
     /**
      * Get id
@@ -211,5 +216,29 @@ class Product
     public function getSwapPreference()
     {
         return $this->swapPreference;
+    }
+
+    /**
+     * Set hasPhoto
+     *
+     * @param boolean $hasPhoto
+     *
+     * @return Product
+     */
+    public function setHasPhoto($hasPhoto)
+    {
+        $this->hasPhoto = $hasPhoto;
+
+        return $this;
+    }
+
+    /**
+     * Get hasPhoto
+     *
+     * @return boolean
+     */
+    public function getHasPhoto()
+    {
+        return $this->hasPhoto;
     }
 }

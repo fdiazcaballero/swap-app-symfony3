@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Country
@@ -41,6 +42,16 @@ class Country
      * @ORM\Column(name="is_active", type="boolean", options={"default":0})
      */
     private $isActive;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="State", mappedBy="country")
+     */
+    private $states;
+    
+     public function __construct()
+    {
+        $this->states = new ArrayCollection();
+    }
     
     
 
@@ -100,5 +111,29 @@ class Country
     public function getCountryCode()
     {
         return $this->country_code;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     *
+     * @return Country
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
     }
 }

@@ -1,0 +1,86 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * State
+ *
+ * @ORM\Table(name="state")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\StateRepository")
+ */
+class State
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=63)
+     */
+    private $name;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Country", inversedBy="states")
+     * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
+     */
+    private $country;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="state_code", nullable=true, type="string", length=3)
+     */
+    private $state_code;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean", options={"default":0})
+     */
+    private $isActive;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return State
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+}
+
