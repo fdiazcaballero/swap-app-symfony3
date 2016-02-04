@@ -48,9 +48,15 @@ class Country
      */
     private $states;
     
+    /**
+     * @ORM\OneToMany(targetEntity="City", mappedBy="country")
+     */
+    private $cities;
+    
      public function __construct()
     {
         $this->states = new ArrayCollection();
+        $this->cities = new ArrayCollection();
     }  
 
     /**
@@ -167,5 +173,39 @@ class Country
     public function getStates()
     {
         return $this->states;
+    }
+
+    /**
+     * Add city
+     *
+     * @param \AppBundle\Entity\City $city
+     *
+     * @return Country
+     */
+    public function addCity(\AppBundle\Entity\City $city)
+    {
+        $this->cities[] = $city;
+
+        return $this;
+    }
+
+    /**
+     * Remove city
+     *
+     * @param \AppBundle\Entity\City $city
+     */
+    public function removeCity(\AppBundle\Entity\City $city)
+    {
+        $this->cities->removeElement($city);
+    }
+
+    /**
+     * Get cities
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCities()
+    {
+        return $this->cities;
     }
 }

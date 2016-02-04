@@ -30,7 +30,7 @@ class State
     
     /**
      * @ORM\ManyToOne(targetEntity="Country", inversedBy="states")
-     * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="country_id", nullable=false, referencedColumnName="id")
      */
     private $country;
     
@@ -47,8 +47,17 @@ class State
      * @ORM\Column(name="is_active", type="boolean", options={"default":0})
      */
     private $isActive;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="City", mappedBy="state")
+     */
+    private $cities;
 
-
+     public function __construct()
+    {
+        $this->cities = new ArrayCollection();
+    }  
+    
     /**
      * Get id
      *
@@ -153,5 +162,39 @@ class State
     public function getCountry()
     {
         return $this->country;
+    }
+
+    /**
+     * Add city
+     *
+     * @param \AppBundle\Entity\City $city
+     *
+     * @return State
+     */
+    public function addCity(\AppBundle\Entity\City $city)
+    {
+        $this->cities[] = $city;
+
+        return $this;
+    }
+
+    /**
+     * Remove city
+     *
+     * @param \AppBundle\Entity\City $city
+     */
+    public function removeCity(\AppBundle\Entity\City $city)
+    {
+        $this->cities->removeElement($city);
+    }
+
+    /**
+     * Get cities
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCities()
+    {
+        return $this->cities;
     }
 }

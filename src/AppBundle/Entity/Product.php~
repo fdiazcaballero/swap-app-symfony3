@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="product")
- * @ORM\Entity(repositoryClass="AppBundle\Entity\ProductRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ProductRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class Product
@@ -46,13 +46,13 @@ class Product
     
     /**
      * @ORM\OneToOne(targetEntity="SwapPreference")
-     * @ORM\JoinColumn(name="swap_preference_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="swap_preference_id", nullable=true, referencedColumnName="id")
      */
     private $swapPreference;
     
     /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="products")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="category_id", nullable=false, referencedColumnName="id")
      */
     private $category;
 

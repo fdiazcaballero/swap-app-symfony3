@@ -25,7 +25,7 @@ class SwapPreference
 
     /**
      * @ORM\OneToOne(targetEntity="Product")
-     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="product_id", nullable=false, referencedColumnName="id")
      */
     private $product;
     
@@ -42,6 +42,12 @@ class SwapPreference
     private $categoryPreference2;
     
     /**
+     * @ORM\ManyToOne(targetEntity="Subcategory", inversedBy="swapPreference")
+     * @ORM\JoinColumn(name="subcategory_preference", nullable=true, referencedColumnName="id")
+     */
+    private $subcategoryPreference;
+    
+    /**
      * Note, that type of a field should be same as you set in Doctrine config
      * (in this case it is GeographicSwapPreferenceType)
      *
@@ -49,6 +55,13 @@ class SwapPreference
      * @DoctrineAssert\Enum(entity="AppBundle\DBAL\Types\GeographicSwapPreferenceType")     
      */
     private $geographicPreference;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_email_alert", type="boolean", options={"default":0})
+     */
+    private $isEmailAlert;
 
 
     /**
@@ -156,5 +169,53 @@ class SwapPreference
     public function getGeographicPreference()
     {
         return $this->geographicPreference;
+    }
+
+    /**
+     * Set isEmailAlert
+     *
+     * @param boolean $isEmailAlert
+     *
+     * @return SwapPreference
+     */
+    public function setIsEmailAlert($isEmailAlert)
+    {
+        $this->isEmailAlert = $isEmailAlert;
+
+        return $this;
+    }
+
+    /**
+     * Get isEmailAlert
+     *
+     * @return boolean
+     */
+    public function getIsEmailAlert()
+    {
+        return $this->isEmailAlert;
+    }
+
+    /**
+     * Set subcategoryPreference
+     *
+     * @param \AppBundle\Entity\Subcategory $subcategoryPreference
+     *
+     * @return SwapPreference
+     */
+    public function setSubcategoryPreference(\AppBundle\Entity\Subcategory $subcategoryPreference = null)
+    {
+        $this->subcategoryPreference = $subcategoryPreference;
+
+        return $this;
+    }
+
+    /**
+     * Get subcategoryPreference
+     *
+     * @return \AppBundle\Entity\Subcategory
+     */
+    public function getSubcategoryPreference()
+    {
+        return $this->subcategoryPreference;
     }
 }

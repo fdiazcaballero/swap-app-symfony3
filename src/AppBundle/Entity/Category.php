@@ -30,9 +30,19 @@ class Category
     private $name;
     
     /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+    
+    /**
      * @ORM\OneToMany(targetEntity="Product", mappedBy="category")
      */
     private $products;
+    
+     /**
+     * @ORM\OneToMany(targetEntity="Subcategory", mappedBy="parentCategory")
+     */
+    private $subcategories;
     
     /**
      * @ORM\Column(name="swap_preference_1", nullable=true, options={"default":null})
@@ -51,6 +61,8 @@ class Category
         $this->products = new ArrayCollection();
         $this->swapPreference1 = new ArrayCollection();
         $this->swapPreference2 = new ArrayCollection();
+        $this->subcategories = new ArrayCollection();
+        
     }
 
 
@@ -168,5 +180,63 @@ class Category
     public function getSwapPreference2()
     {
         return $this->swapPreference2;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Category
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Add subcategory
+     *
+     * @param \AppBundle\Entity\Subcategory $subcategory
+     *
+     * @return Category
+     */
+    public function addSubcategory(\AppBundle\Entity\Subcategory $subcategory)
+    {
+        $this->subcategories[] = $subcategory;
+
+        return $this;
+    }
+
+    /**
+     * Remove subcategory
+     *
+     * @param \AppBundle\Entity\Subcategory $subcategory
+     */
+    public function removeSubcategory(\AppBundle\Entity\Subcategory $subcategory)
+    {
+        $this->subcategories->removeElement($subcategory);
+    }
+
+    /**
+     * Get subcategories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSubcategories()
+    {
+        return $this->subcategories;
     }
 }
