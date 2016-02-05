@@ -44,6 +44,13 @@ class Subcategory
      */
     private $swapPreference;
     
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean", options={"default":1})
+     */
+    private $isActive;
+    
      public function __construct()
     {
         $this->swapPreference = new ArrayCollection();        
@@ -178,5 +185,29 @@ class Subcategory
     public function getParentCategory()
     {
         return $this->parentCategory;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     *
+     * @return Subcategory
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
     }
 }

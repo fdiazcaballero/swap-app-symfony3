@@ -22,6 +22,11 @@ class SwapPreference
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
 
     /**
      * @ORM\OneToOne(targetEntity="Product")
@@ -217,5 +222,29 @@ class SwapPreference
     public function getSubcategoryPreference()
     {
         return $this->subcategoryPreference;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return SwapPreference
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }

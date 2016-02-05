@@ -18,6 +18,12 @@ class Product
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+     /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="products")
+     * @ORM\JoinColumn(name="user_id", nullable=false, referencedColumnName="id")
+     */
+    private $user;
 
     /**
      * @ORM\Column(type="string", length=100)
@@ -240,5 +246,29 @@ class Product
     public function getHasPhoto()
     {
         return $this->hasPhoto;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Product
+     */
+    public function setUser(\AppBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

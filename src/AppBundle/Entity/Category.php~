@@ -55,6 +55,13 @@ class Category
      * @ORM\OneToMany(targetEntity="Category", mappedBy="categoryPreference2")
      */
     private $swapPreference2;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean", options={"default":1})
+     */
+    private $isActive;
 
     public function __construct()
     {
@@ -238,5 +245,29 @@ class Category
     public function getSubcategories()
     {
         return $this->subcategories;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     *
+     * @return Category
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
     }
 }
