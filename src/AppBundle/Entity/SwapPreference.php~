@@ -35,22 +35,22 @@ class SwapPreference
     private $product;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="swapPreference1")
-     * @ORM\JoinColumn(name="category_preference_1", nullable=false, referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="swapPreference")
+     * @ORM\JoinColumn(name="category_preference", nullable=false, referencedColumnName="id")
      */
-    private $categoryPreference1;
-    
-    /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="swapPreference2")
-     * @ORM\JoinColumn(name="category_preference_2", nullable=true, referencedColumnName="id")
-     */
-    private $categoryPreference2;
-    
+    private $categoryPreference;
+        
     /**
      * @ORM\ManyToOne(targetEntity="Subcategory", inversedBy="swapPreference")
      * @ORM\JoinColumn(name="subcategory_preference", nullable=true, referencedColumnName="id")
      */
     private $subcategoryPreference;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Subsubcategory", inversedBy="swapPreference")
+     * @ORM\JoinColumn(name="subsubcategory_preference", nullable=true, referencedColumnName="id")
+     */
+    private $subsubcategoryPreference;
     
     /**
      * Note, that type of a field should be same as you set in Doctrine config
@@ -105,53 +105,30 @@ class SwapPreference
     }
 
     /**
-     * Set categoryPreference1
+     * Set categoryPreference
      *
-     * @param \AppBundle\Entity\Category $categoryPreference1
+     * @param \AppBundle\Entity\Category $categoryPreference
      *
      * @return SwapPreference
      */
-    public function setCategoryPreference1(\AppBundle\Entity\Category $categoryPreference1 = null)
+    public function setCategoryPreference1(\AppBundle\Entity\Category $categoryPreference = null)
     {
-        $this->categoryPreference1 = $categoryPreference1;
+        $this->categoryPreference = $categoryPreference;
 
         return $this;
     }
 
     /**
-     * Get categoryPreference1
+     * Get categoryPreference
      *
      * @return \AppBundle\Entity\Category
      */
-    public function getCategoryPreference1()
+    public function getCategoryPreference()
     {
-        return $this->categoryPreference1;
+        return $this->categoryPreference;
     }
 
-    /**
-     * Set categoryPreference2
-     *
-     * @param \AppBundle\Entity\Category $categoryPreference2
-     *
-     * @return SwapPreference
-     */
-    public function setCategoryPreference2(\AppBundle\Entity\Category $categoryPreference2 = null)
-    {
-        $this->categoryPreference2 = $categoryPreference2;
-
-        return $this;
-    }
-
-    /**
-     * Get categoryPreference2
-     *
-     * @return \AppBundle\Entity\Category
-     */
-    public function getCategoryPreference2()
-    {
-        return $this->categoryPreference2;
-    }
-
+    
     /**
      * Set geographicPreference
      *

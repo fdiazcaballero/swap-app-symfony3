@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Subcategory
+ * Subsubcategory
  *
- * @ORM\Table(name="subcategory")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\SubcategoryRepository")
+ * @ORM\Table(name="subsubcategory")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\SubsubcategoryRepository")
  */
-class Subcategory
+class Subsubcategory
 {
     /**
      * @var int
@@ -23,13 +23,15 @@ class Subcategory
     private $id;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="subcategories")
-     * @ORM\JoinColumn(name="parent_category_id", nullable=false, referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Subcategory", inversedBy="subsubcategories")
+     * @ORM\JoinColumn(name="parent_subcategory_id", nullable=false, referencedColumnName="id")
      */
-    private $parentCategory;
+    private $parentSubcategory;
 
     /**
-     * @ORM\Column(type="string", length=63, unique=true)
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=63, unique=true)
      */
     private $name;
     
@@ -40,7 +42,7 @@ class Subcategory
     
     /**
      * @ORM\Column(name="swap_preference", nullable=true, options={"default":null})
-     * @ORM\OneToMany(targetEntity="SwapPreference", mappedBy="subcategoryPreference")
+     * @ORM\OneToMany(targetEntity="SwapPreference", mappedBy="subsubcategoryPreference")
      */
     private $swapPreference;
     
@@ -72,7 +74,7 @@ class Subcategory
      *
      * @param string $name
      *
-     * @return Subcategory
+     * @return Subsubcategory
      */
     public function setName($name)
     {
@@ -92,35 +94,11 @@ class Subcategory
     }
 
     /**
-     * Set category
-     *
-     * @param integer $category
-     *
-     * @return Subcategory
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * Get category
-     *
-     * @return int
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
      * Set description
      *
      * @param string $description
      *
-     * @return Subcategory
+     * @return Subsubcategory
      */
     public function setDescription($description)
     {
@@ -144,7 +122,7 @@ class Subcategory
      *
      * @param string $swapPreference
      *
-     * @return Subcategory
+     * @return Subsubcategory
      */
     public function setSwapPreference($swapPreference)
     {
@@ -164,35 +142,11 @@ class Subcategory
     }
 
     /**
-     * Set parentCategory
-     *
-     * @param \AppBundle\Entity\Category $parentCategory
-     *
-     * @return Subcategory
-     */
-    public function setParentCategory(\AppBundle\Entity\Category $parentCategory = null)
-    {
-        $this->parentCategory = $parentCategory;
-
-        return $this;
-    }
-
-    /**
-     * Get parentCategory
-     *
-     * @return \AppBundle\Entity\Category
-     */
-    public function getParentCategory()
-    {
-        return $this->parentCategory;
-    }
-
-    /**
      * Set isActive
      *
      * @param boolean $isActive
      *
-     * @return Subcategory
+     * @return Subsubcategory
      */
     public function setIsActive($isActive)
     {
@@ -209,5 +163,29 @@ class Subcategory
     public function getIsActive()
     {
         return $this->isActive;
+    }
+
+    /**
+     * Set parentSubcategory
+     *
+     * @param \AppBundle\Entity\Subcategory $parentSubcategory
+     *
+     * @return Subsubcategory
+     */
+    public function setParentSubcategory(\AppBundle\Entity\Subcategory $parentSubcategory)
+    {
+        $this->parentSubcategory = $parentSubcategory;
+
+        return $this;
+    }
+
+    /**
+     * Get parentSubcategory
+     *
+     * @return \AppBundle\Entity\Subcategory
+     */
+    public function getParentSubcategory()
+    {
+        return $this->parentSubcategory;
     }
 }

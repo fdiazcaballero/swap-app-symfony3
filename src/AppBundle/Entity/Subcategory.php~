@@ -21,9 +21,15 @@ class Subcategory
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="subcategories")
+     * @ORM\JoinColumn(name="parent_category_id", nullable=false, referencedColumnName="id")
+     */
+    private $parentCategory;
 
     /**
-     * @ORM\Column(type="string", length=63)
+     * @ORM\Column(type="string", length=63, unique=true)
      */
     private $name;
     
@@ -31,16 +37,10 @@ class Subcategory
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="subcategories")
-     * @ORM\JoinColumn(name="parent_category_id", nullable=false, referencedColumnName="id")
-     */
-    private $parentCategory;
     
     /**
      * @ORM\Column(name="swap_preference", nullable=true, options={"default":null})
-     * @ORM\OneToMany(targetEntity="Subcategory", mappedBy="subcategoryPreference")
+     * @ORM\OneToMany(targetEntity="SwapPreference", mappedBy="subcategoryPreference")
      */
     private $swapPreference;
     

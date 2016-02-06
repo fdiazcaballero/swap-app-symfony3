@@ -25,7 +25,7 @@ class Category
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=63, unique=true)
      */
     private $name;
     
@@ -45,16 +45,11 @@ class Category
     private $subcategories;
     
     /**
-     * @ORM\Column(name="swap_preference_1", nullable=true, options={"default":null})
-     * @ORM\OneToMany(targetEntity="Category", mappedBy="categoryPreference1")
+     * @ORM\Column(name="swap_preference", nullable=true, options={"default":null})
+     * @ORM\OneToMany(targetEntity="SwapPreference", mappedBy="categoryPreference")
      */
-    private $swapPreference1;
+    private $swapPreference;
     
-     /**
-     * @ORM\Column(name="swap_preference_2", nullable=true, options={"default":null})
-     * @ORM\OneToMany(targetEntity="Category", mappedBy="categoryPreference2")
-     */
-    private $swapPreference2;
     
     /**
      * @var boolean
@@ -67,7 +62,6 @@ class Category
     {
         $this->products = new ArrayCollection();
         $this->swapPreference1 = new ArrayCollection();
-        $this->swapPreference2 = new ArrayCollection();
         $this->subcategories = new ArrayCollection();
         
     }
@@ -142,51 +136,27 @@ class Category
     }
 
     /**
-     * Set swapPreference1
+     * Set swapPreference
      *
-     * @param string $swapPreference1
+     * @param string $swapPreference
      *
      * @return Category
      */
-    public function setSwapPreference1($swapPreference1)
+    public function setSwapPreference($swapPreference)
     {
-        $this->swapPreference1 = $swapPreference1;
+        $this->swapPreference = $swapPreference;
 
         return $this;
     }
 
     /**
-     * Get swapPreference1
+     * Get swapPreference
      *
      * @return string
      */
-    public function getSwapPreference1()
+    public function getSwapPreference()
     {
-        return $this->swapPreference1;
-    }
-
-    /**
-     * Set swapPreference2
-     *
-     * @param string $swapPreference2
-     *
-     * @return Category
-     */
-    public function setSwapPreference2($swapPreference2)
-    {
-        $this->swapPreference2 = $swapPreference2;
-
-        return $this;
-    }
-
-    /**
-     * Get swapPreference2
-     *
-     * @return string
-     */
-    public function getSwapPreference2()
-    {
-        return $this->swapPreference2;
+        return $this->swapPreference;
     }
 
     /**
