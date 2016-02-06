@@ -26,7 +26,7 @@ class Product
     private $user;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=63)
      */
     private $name;
 
@@ -36,14 +36,25 @@ class Product
     private $description;
     
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="string", length=63)
      */
-    private $createdAt;
+    private $condition;
+    
+     /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $years;
     
     /**
-     * @ORM\Column(type="boolean", options={"default":0})
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    private $isFree;
+    private $months;
+    
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;   
+
     
     /**
      * @ORM\Column(type="boolean", options={"default":0})
@@ -61,6 +72,30 @@ class Product
      * @ORM\JoinColumn(name="category_id", nullable=false, referencedColumnName="id")
      */
     private $category;
+        
+     /**
+     * @ORM\ManyToOne(targetEntity="Subcategory", inversedBy="products")
+     * @ORM\JoinColumn(name="subcategory_id", nullable=false, referencedColumnName="id")
+     */
+    private $subCategory;
+    
+     /**
+     * @ORM\ManyToOne(targetEntity="Subsubcategory", inversedBy="products")
+     * @ORM\JoinColumn(name="subsubcategory_id", nullable=true, referencedColumnName="id")
+     */
+    private $subSubCategory;
+    
+        /**
+     * @ORM\ManyToOne(targetEntity="Subsubsubcategory", inversedBy="products")
+     * @ORM\JoinColumn(name="subsubsubcategory_id", nullable=true, referencedColumnName="id")
+     */
+    private $subSubSubcategory;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Furthersubcategory", inversedBy="products")
+     * @ORM\JoinColumn(name="furthersubcategory_id", nullable=true, referencedColumnName="id")
+     */
+    private $furtherSubCategory;
 
     /**
      * Get id
@@ -270,5 +305,173 @@ class Product
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set condition
+     *
+     * @param string $condition
+     *
+     * @return Product
+     */
+    public function setCondition($condition)
+    {
+        $this->condition = $condition;
+
+        return $this;
+    }
+
+    /**
+     * Get condition
+     *
+     * @return string
+     */
+    public function getCondition()
+    {
+        return $this->condition;
+    }
+
+    /**
+     * Set years
+     *
+     * @param integer $years
+     *
+     * @return Product
+     */
+    public function setYears($years)
+    {
+        $this->years = $years;
+
+        return $this;
+    }
+
+    /**
+     * Get years
+     *
+     * @return integer
+     */
+    public function getYears()
+    {
+        return $this->years;
+    }
+
+    /**
+     * Set months
+     *
+     * @param integer $months
+     *
+     * @return Product
+     */
+    public function setMonths($months)
+    {
+        $this->months = $months;
+
+        return $this;
+    }
+
+    /**
+     * Get months
+     *
+     * @return integer
+     */
+    public function getMonths()
+    {
+        return $this->months;
+    }
+
+    /**
+     * Set subCategory
+     *
+     * @param \AppBundle\Entity\Subcategory $subCategory
+     *
+     * @return Product
+     */
+    public function setSubCategory(\AppBundle\Entity\Subcategory $subCategory)
+    {
+        $this->subCategory = $subCategory;
+
+        return $this;
+    }
+
+    /**
+     * Get subCategory
+     *
+     * @return \AppBundle\Entity\Subcategory
+     */
+    public function getSubCategory()
+    {
+        return $this->subCategory;
+    }
+
+    /**
+     * Set subSubCategory
+     *
+     * @param \AppBundle\Entity\Subsubcategory $subSubCategory
+     *
+     * @return Product
+     */
+    public function setSubSubCategory(\AppBundle\Entity\Subsubcategory $subSubCategory = null)
+    {
+        $this->subSubCategory = $subSubCategory;
+
+        return $this;
+    }
+
+    /**
+     * Get subSubCategory
+     *
+     * @return \AppBundle\Entity\Subsubcategory
+     */
+    public function getSubSubCategory()
+    {
+        return $this->subSubCategory;
+    }
+
+    /**
+     * Set subSubSubcategory
+     *
+     * @param \AppBundle\Entity\Subsubsubcategory $subSubSubcategory
+     *
+     * @return Product
+     */
+    public function setSubSubSubcategory(\AppBundle\Entity\Subsubsubcategory $subSubSubcategory = null)
+    {
+        $this->subSubSubcategory = $subSubSubcategory;
+
+        return $this;
+    }
+
+    /**
+     * Get subSubSubcategory
+     *
+     * @return \AppBundle\Entity\Subsubsubcategory
+     */
+    public function getSubSubSubcategory()
+    {
+        return $this->subSubSubcategory;
+    }
+
+    /**
+     * Set furtherSubCategory
+     *
+     * @param \AppBundle\Entity\Furthersubcategory $furtherSubCategory
+     *
+     * @return Product
+     */
+    public function setFurtherSubCategory(\AppBundle\Entity\Furthersubcategory $furtherSubCategory = null)
+    {
+        $this->furtherSubCategory = $furtherSubCategory;
+
+        return $this;
+    }
+
+    /**
+     * Get furtherSubCategory
+     *
+     * @return \AppBundle\Entity\Furthersubcategory
+     */
+    public function getFurtherSubCategory()
+    {
+        return $this->furtherSubCategory;
     }
 }

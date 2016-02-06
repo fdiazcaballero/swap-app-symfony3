@@ -50,6 +50,11 @@ class Subcategory
     private $swapPreference;
     
     /**
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="subCategory")
+     */
+    private $products;
+    
+    /**
      * @var boolean
      *
      * @ORM\Column(name="is_active", type="boolean", options={"default":1})
@@ -58,6 +63,7 @@ class Subcategory
     
      public function __construct()
     {
+        $this->products = new ArrayCollection();
         $this->swapPreference = new ArrayCollection();
         $this->subSubCategories = new ArrayCollection();
     }
@@ -249,5 +255,39 @@ class Subcategory
     public function getSubSubCategories()
     {
         return $this->subSubCategories;
+    }
+
+    /**
+     * Add product
+     *
+     * @param \AppBundle\Entity\Product $product
+     *
+     * @return Subcategory
+     */
+    public function addProduct(\AppBundle\Entity\Product $product)
+    {
+        $this->products[] = $product;
+
+        return $this;
+    }
+
+    /**
+     * Remove product
+     *
+     * @param \AppBundle\Entity\Product $product
+     */
+    public function removeProduct(\AppBundle\Entity\Product $product)
+    {
+        $this->products->removeElement($product);
+    }
+
+    /**
+     * Get products
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProducts()
+    {
+        return $this->products;
     }
 }

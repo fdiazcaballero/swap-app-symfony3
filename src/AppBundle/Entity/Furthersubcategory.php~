@@ -47,6 +47,11 @@ class Furthersubcategory
     private $swapPreference;
     
     /**
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="furtherSubCategory")
+     */
+    private $products;
+    
+    /**
      * @var boolean
      *
      * @ORM\Column(name="is_active", type="boolean", options={"default":1})
@@ -55,6 +60,7 @@ class Furthersubcategory
     
      public function __construct()
     {
+        $this->products = new ArrayCollection();
         $this->swapPreference = new ArrayCollection();         
     }
 
@@ -93,5 +99,100 @@ class Furthersubcategory
     {
         return $this->name;
     }
-}
 
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Furthersubcategory
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set swapPreference
+     *
+     * @param string $swapPreference
+     *
+     * @return Furthersubcategory
+     */
+    public function setSwapPreference($swapPreference)
+    {
+        $this->swapPreference = $swapPreference;
+
+        return $this;
+    }
+
+    /**
+     * Get swapPreference
+     *
+     * @return string
+     */
+    public function getSwapPreference()
+    {
+        return $this->swapPreference;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     *
+     * @return Furthersubcategory
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * Set parentSubSubSubcategory
+     *
+     * @param \AppBundle\Entity\Subsubsubcategory $parentSubSubSubcategory
+     *
+     * @return Furthersubcategory
+     */
+    public function setParentSubSubSubcategory(\AppBundle\Entity\Subsubsubcategory $parentSubSubSubcategory)
+    {
+        $this->parentSubSubSubcategory = $parentSubSubSubcategory;
+
+        return $this;
+    }
+
+    /**
+     * Get parentSubSubSubcategory
+     *
+     * @return \AppBundle\Entity\Subsubsubcategory
+     */
+    public function getParentSubSubSubcategory()
+    {
+        return $this->parentSubSubSubcategory;
+    }
+}

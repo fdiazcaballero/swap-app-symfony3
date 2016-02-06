@@ -35,6 +35,11 @@ class SwapPreference
     private $product;
     
     /**
+     * @ORM\Column(type="boolean", options={"default":0})
+     */
+    private $isFree;
+    
+    /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="swapPreference")
      * @ORM\JoinColumn(name="category_preference", nullable=true, referencedColumnName="id")
      */
@@ -307,5 +312,29 @@ class SwapPreference
     public function getFurtherSubCategoryPreference()
     {
         return $this->furtherSubCategoryPreference;
+    }
+
+    /**
+     * Set isFree
+     *
+     * @param boolean $isFree
+     *
+     * @return SwapPreference
+     */
+    public function setIsFree($isFree)
+    {
+        $this->isFree = $isFree;
+
+        return $this;
+    }
+
+    /**
+     * Get isFree
+     *
+     * @return boolean
+     */
+    public function getIsFree()
+    {
+        return $this->isFree;
     }
 }

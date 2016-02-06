@@ -52,6 +52,11 @@ class Subsubsubcategory
     private $furtherSubCategories;
     
     /**
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="subSubSubCategory")
+     */
+    private $products;
+    
+    /**
      * @var boolean
      *
      * @ORM\Column(name="is_active", type="boolean", options={"default":1})
@@ -60,6 +65,7 @@ class Subsubsubcategory
     
      public function __construct()
     {
+        $this->products = new ArrayCollection();
         $this->swapPreference = new ArrayCollection(); 
         $this->furtherSubCategories = new ArrayCollection();
         
@@ -170,5 +176,63 @@ class Subsubsubcategory
     public function getIsActive()
     {
         return $this->isActive;
+    }
+
+    /**
+     * Set parentSubSubcategory
+     *
+     * @param \AppBundle\Entity\Subsubcategory $parentSubSubcategory
+     *
+     * @return Subsubsubcategory
+     */
+    public function setParentSubSubcategory(\AppBundle\Entity\Subsubcategory $parentSubSubcategory)
+    {
+        $this->parentSubSubcategory = $parentSubSubcategory;
+
+        return $this;
+    }
+
+    /**
+     * Get parentSubSubcategory
+     *
+     * @return \AppBundle\Entity\Subsubcategory
+     */
+    public function getParentSubSubcategory()
+    {
+        return $this->parentSubSubcategory;
+    }
+
+    /**
+     * Add furtherSubCategory
+     *
+     * @param \AppBundle\Entity\Furthersubcategory $furtherSubCategory
+     *
+     * @return Subsubsubcategory
+     */
+    public function addFurtherSubCategory(\AppBundle\Entity\Furthersubcategory $furtherSubCategory)
+    {
+        $this->furtherSubCategories[] = $furtherSubCategory;
+
+        return $this;
+    }
+
+    /**
+     * Remove furtherSubCategory
+     *
+     * @param \AppBundle\Entity\Furthersubcategory $furtherSubCategory
+     */
+    public function removeFurtherSubCategory(\AppBundle\Entity\Furthersubcategory $furtherSubCategory)
+    {
+        $this->furtherSubCategories->removeElement($furtherSubCategory);
+    }
+
+    /**
+     * Get furtherSubCategories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFurtherSubCategories()
+    {
+        return $this->furtherSubCategories;
     }
 }

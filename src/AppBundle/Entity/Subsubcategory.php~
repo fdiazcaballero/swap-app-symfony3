@@ -52,6 +52,11 @@ class Subsubcategory
     private $swapPreference;
     
     /**
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="subSubCategory")
+     */
+    private $products;
+    
+    /**
      * @var boolean
      *
      * @ORM\Column(name="is_active", type="boolean", options={"default":1})
@@ -60,6 +65,7 @@ class Subsubcategory
     
      public function __construct()
     {
+        $this->products = new ArrayCollection();
         $this->swapPreference = new ArrayCollection(); 
         $this->subSubSubCategories = new ArrayCollection();
         

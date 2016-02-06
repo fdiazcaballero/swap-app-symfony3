@@ -35,6 +35,11 @@ class SwapPreference
     private $product;
     
     /**
+     * @ORM\Column(type="boolean", options={"default":0})
+     */
+    private $isFree;
+    
+    /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="swapPreference")
      * @ORM\JoinColumn(name="category_preference", nullable=true, referencedColumnName="id")
      */
@@ -116,4 +121,196 @@ class SwapPreference
         return $this->product;
     }
 
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return SwapPreference
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set geographicPreference
+     *
+     * @param GeographicSwapPreferenceType $geographicPreference
+     *
+     * @return SwapPreference
+     */
+    public function setGeographicPreference($geographicPreference)
+    {
+        $this->geographicPreference = $geographicPreference;
+
+        return $this;
+    }
+
+    /**
+     * Get geographicPreference
+     *
+     * @return GeographicSwapPreferenceType
+     */
+    public function getGeographicPreference()
+    {
+        return $this->geographicPreference;
+    }
+
+    /**
+     * Set isEmailAlert
+     *
+     * @param boolean $isEmailAlert
+     *
+     * @return SwapPreference
+     */
+    public function setIsEmailAlert($isEmailAlert)
+    {
+        $this->isEmailAlert = $isEmailAlert;
+
+        return $this;
+    }
+
+    /**
+     * Get isEmailAlert
+     *
+     * @return boolean
+     */
+    public function getIsEmailAlert()
+    {
+        return $this->isEmailAlert;
+    }
+
+    /**
+     * Set categoryPreference
+     *
+     * @param \AppBundle\Entity\Category $categoryPreference
+     *
+     * @return SwapPreference
+     */
+    public function setCategoryPreference(\AppBundle\Entity\Category $categoryPreference = null)
+    {
+        $this->categoryPreference = $categoryPreference;
+
+        return $this;
+    }
+
+    /**
+     * Get categoryPreference
+     *
+     * @return \AppBundle\Entity\Category
+     */
+    public function getCategoryPreference()
+    {
+        return $this->categoryPreference;
+    }
+
+    /**
+     * Set subCategoryPreference
+     *
+     * @param \AppBundle\Entity\Subcategory $subCategoryPreference
+     *
+     * @return SwapPreference
+     */
+    public function setSubCategoryPreference(\AppBundle\Entity\Subcategory $subCategoryPreference = null)
+    {
+        $this->subCategoryPreference = $subCategoryPreference;
+
+        return $this;
+    }
+
+    /**
+     * Get subCategoryPreference
+     *
+     * @return \AppBundle\Entity\Subcategory
+     */
+    public function getSubCategoryPreference()
+    {
+        return $this->subCategoryPreference;
+    }
+
+    /**
+     * Set subSubCategoryPreference
+     *
+     * @param \AppBundle\Entity\Subsubcategory $subSubCategoryPreference
+     *
+     * @return SwapPreference
+     */
+    public function setSubSubCategoryPreference(\AppBundle\Entity\Subsubcategory $subSubCategoryPreference = null)
+    {
+        $this->subSubCategoryPreference = $subSubCategoryPreference;
+
+        return $this;
+    }
+
+    /**
+     * Get subSubCategoryPreference
+     *
+     * @return \AppBundle\Entity\Subsubcategory
+     */
+    public function getSubSubCategoryPreference()
+    {
+        return $this->subSubCategoryPreference;
+    }
+
+    /**
+     * Set subSubSubCategoryPreference
+     *
+     * @param \AppBundle\Entity\Subsubsubcategory $subSubSubCategoryPreference
+     *
+     * @return SwapPreference
+     */
+    public function setSubSubSubCategoryPreference(\AppBundle\Entity\Subsubsubcategory $subSubSubCategoryPreference = null)
+    {
+        $this->subSubSubCategoryPreference = $subSubSubCategoryPreference;
+
+        return $this;
+    }
+
+    /**
+     * Get subSubSubCategoryPreference
+     *
+     * @return \AppBundle\Entity\Subsubsubcategory
+     */
+    public function getSubSubSubCategoryPreference()
+    {
+        return $this->subSubSubCategoryPreference;
+    }
+
+    /**
+     * Set furtherSubCategoryPreference
+     *
+     * @param \AppBundle\Entity\Furthersubcategory $furtherSubCategoryPreference
+     *
+     * @return SwapPreference
+     */
+    public function setFurtherSubCategoryPreference(\AppBundle\Entity\Furthersubcategory $furtherSubCategoryPreference = null)
+    {
+        $this->furtherSubCategoryPreference = $furtherSubCategoryPreference;
+
+        return $this;
+    }
+
+    /**
+     * Get furtherSubCategoryPreference
+     *
+     * @return \AppBundle\Entity\Furthersubcategory
+     */
+    public function getFurtherSubCategoryPreference()
+    {
+        return $this->furtherSubCategoryPreference;
+    }
 }
