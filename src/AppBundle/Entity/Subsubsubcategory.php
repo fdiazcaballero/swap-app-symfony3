@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Subsubsubcategory
@@ -25,7 +26,7 @@ class Subsubsubcategory
      * @ORM\ManyToOne(targetEntity="Subsubcategory", inversedBy="subSubSubCategories")
      * @ORM\JoinColumn(name="parent_subsubcategory_id", nullable=false, referencedColumnName="id")
      */
-    private $parentSubcategory;
+    private $parentSubSubcategory;
 
     /**
      * @var string
@@ -41,9 +42,14 @@ class Subsubsubcategory
     
     /**
      * @ORM\Column(name="swap_preference", nullable=true, options={"default":null})
-     * @ORM\OneToMany(targetEntity="SwapPreference", mappedBy="subsubsubcategoryPreference")
+     * @ORM\OneToMany(targetEntity="SwapPreference", mappedBy="subSubSubCategoryPreference")
      */
     private $swapPreference;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Furthersubcategory", mappedBy="parentSubSubSubcategory")
+     */
+    private $furtherSubCategories;
     
     /**
      * @var boolean
@@ -51,6 +57,13 @@ class Subsubsubcategory
      * @ORM\Column(name="is_active", type="boolean", options={"default":1})
      */
     private $isActive;
+    
+     public function __construct()
+    {
+        $this->swapPreference = new ArrayCollection(); 
+        $this->furtherSubCategories = new ArrayCollection();
+        
+    }
 
 
     /**
@@ -160,26 +173,60 @@ class Subsubsubcategory
     }
 
     /**
-     * Set parentSubcategory
+     * Set parentSubSubcategory
      *
-     * @param \AppBundle\Entity\Subsubcategory $parentSubcategory
+     * @param \AppBundle\Entity\Subsubcategory $parentSubSubcategory
      *
      * @return Subsubsubcategory
      */
-    public function setParentSubcategory(\AppBundle\Entity\Subsubcategory $parentSubcategory)
+    public function setParentSubSubcategory(\AppBundle\Entity\Subsubcategory $parentSubSubcategory)
     {
-        $this->parentSubcategory = $parentSubcategory;
+        $this->parentSubSubcategory = $parentSubSubcategory;
 
         return $this;
     }
 
     /**
-     * Get parentSubcategory
+     * Get parentSubSubcategory
      *
      * @return \AppBundle\Entity\Subsubcategory
      */
-    public function getParentSubcategory()
+    public function getParentSubSubcategory()
     {
-        return $this->parentSubcategory;
+        return $this->parentSubSubcategory;
+    }
+
+    /**
+     * Add furtherSubCategory
+     *
+     * @param \AppBundle\Entity\Furthersubcategory $furtherSubCategory
+     *
+     * @return Subsubsubcategory
+     */
+    public function addFurtherSubCategory(\AppBundle\Entity\Furthersubcategory $furtherSubCategory)
+    {
+        $this->furtherSubCategories[] = $furtherSubCategory;
+
+        return $this;
+    }
+
+    /**
+     * Remove furtherSubCategory
+     *
+     * @param \AppBundle\Entity\Furthersubcategory $furtherSubCategory
+     */
+    public function removeFurtherSubCategory(\AppBundle\Entity\Furthersubcategory $furtherSubCategory)
+    {
+        $this->furtherSubCategories->removeElement($furtherSubCategory);
+    }
+
+    /**
+     * Get furtherSubCategories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFurtherSubCategories()
+    {
+        return $this->furtherSubCategories;
     }
 }

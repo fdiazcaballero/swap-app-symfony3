@@ -41,13 +41,13 @@ class Subsubcategory
     private $description;
     
      /**
-     * @ORM\OneToMany(targetEntity="Subsubsubcategory", mappedBy="parentSubsubcategory")
+     * @ORM\OneToMany(targetEntity="Subsubsubcategory", mappedBy="parentSubSubcategory")
      */
     private $subSubSubCategories;
     
     /**
      * @ORM\Column(name="swap_preference", nullable=true, options={"default":null})
-     * @ORM\OneToMany(targetEntity="SwapPreference", mappedBy="subsubcategoryPreference")
+     * @ORM\OneToMany(targetEntity="SwapPreference", mappedBy="subSubCategoryPreference")
      */
     private $swapPreference;
     
@@ -61,7 +61,7 @@ class Subsubcategory
      public function __construct()
     {
         $this->swapPreference = new ArrayCollection(); 
-        $this->subSubSubcategories = new ArrayCollection();
+        $this->subSubSubCategories = new ArrayCollection();
         
     }
 

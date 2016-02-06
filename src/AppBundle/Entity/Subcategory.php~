@@ -45,7 +45,7 @@ class Subcategory
     
     /**
      * @ORM\Column(name="swap_preference", nullable=true, options={"default":null})
-     * @ORM\OneToMany(targetEntity="SwapPreference", mappedBy="subcategoryPreference")
+     * @ORM\OneToMany(targetEntity="SwapPreference", mappedBy="subCategoryPreference")
      */
     private $swapPreference;
     
@@ -59,7 +59,7 @@ class Subcategory
      public function __construct()
     {
         $this->swapPreference = new ArrayCollection();
-        $this->subSubcategories = new ArrayCollection();
+        $this->subSubCategories = new ArrayCollection();
     }
 
 

@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Subsubcategory
+ * Furthersubcategory
  *
- * @ORM\Table(name="subsubcategory")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\SubsubcategoryRepository")
+ * @ORM\Table(name="furthersubcategory")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\FurthersubcategoryRepository")
  */
-class Subsubcategory
+class Furthersubcategory
 {
     /**
      * @var int
@@ -22,11 +22,11 @@ class Subsubcategory
      */
     private $id;
     
-    /**
-     * @ORM\ManyToOne(targetEntity="Subcategory", inversedBy="subSubCategories")
-     * @ORM\JoinColumn(name="parent_subcategory_id", nullable=false, referencedColumnName="id")
+     /**
+     * @ORM\ManyToOne(targetEntity="Subsubsubcategory", inversedBy="FurtherSubCategories")
+     * @ORM\JoinColumn(name="parent_subsubsubcategory_id", nullable=false, referencedColumnName="id")
      */
-    private $parentSubcategory;
+    private $parentSubSubSubcategory;
 
     /**
      * @var string
@@ -40,14 +40,9 @@ class Subsubcategory
      */
     private $description;
     
-     /**
-     * @ORM\OneToMany(targetEntity="Subsubsubcategory", mappedBy="parentSubSubcategory")
-     */
-    private $subSubSubCategories;
-    
     /**
      * @ORM\Column(name="swap_preference", nullable=true, options={"default":null})
-     * @ORM\OneToMany(targetEntity="SwapPreference", mappedBy="subSubCategoryPreference")
+     * @ORM\OneToMany(targetEntity="SwapPreference", mappedBy="furtherSubcategoryPreference")
      */
     private $swapPreference;
     
@@ -60,10 +55,9 @@ class Subsubcategory
     
      public function __construct()
     {
-        $this->swapPreference = new ArrayCollection(); 
-        $this->subSubSubCategories = new ArrayCollection();
-        
+        $this->swapPreference = new ArrayCollection();         
     }
+
 
 
     /**
@@ -81,7 +75,7 @@ class Subsubcategory
      *
      * @param string $name
      *
-     * @return Subsubcategory
+     * @return Furthersubcategory
      */
     public function setName($name)
     {
@@ -105,7 +99,7 @@ class Subsubcategory
      *
      * @param string $description
      *
-     * @return Subsubcategory
+     * @return Furthersubcategory
      */
     public function setDescription($description)
     {
@@ -129,7 +123,7 @@ class Subsubcategory
      *
      * @param string $swapPreference
      *
-     * @return Subsubcategory
+     * @return Furthersubcategory
      */
     public function setSwapPreference($swapPreference)
     {
@@ -153,7 +147,7 @@ class Subsubcategory
      *
      * @param boolean $isActive
      *
-     * @return Subsubcategory
+     * @return Furthersubcategory
      */
     public function setIsActive($isActive)
     {
@@ -173,60 +167,26 @@ class Subsubcategory
     }
 
     /**
-     * Set parentSubcategory
+     * Set parentSubSubSubcategory
      *
-     * @param \AppBundle\Entity\Subcategory $parentSubcategory
+     * @param \AppBundle\Entity\Subsubsubcategory $parentSubSubSubcategory
      *
-     * @return Subsubcategory
+     * @return Furthersubcategory
      */
-    public function setParentSubcategory(\AppBundle\Entity\Subcategory $parentSubcategory)
+    public function setParentSubSubSubcategory(\AppBundle\Entity\Subsubsubcategory $parentSubSubSubcategory)
     {
-        $this->parentSubcategory = $parentSubcategory;
+        $this->parentSubSubSubcategory = $parentSubSubSubcategory;
 
         return $this;
     }
 
     /**
-     * Get parentSubcategory
+     * Get parentSubSubSubcategory
      *
-     * @return \AppBundle\Entity\Subcategory
+     * @return \AppBundle\Entity\Subsubsubcategory
      */
-    public function getParentSubcategory()
+    public function getParentSubSubSubcategory()
     {
-        return $this->parentSubcategory;
-    }
-
-    /**
-     * Add subSubSubCategory
-     *
-     * @param \AppBundle\Entity\Subsubsubcategory $subSubSubCategory
-     *
-     * @return Subsubcategory
-     */
-    public function addSubSubSubCategory(\AppBundle\Entity\Subsubsubcategory $subSubSubCategory)
-    {
-        $this->subSubSubCategories[] = $subSubSubCategory;
-
-        return $this;
-    }
-
-    /**
-     * Remove subSubSubCategory
-     *
-     * @param \AppBundle\Entity\Subsubsubcategory $subSubSubCategory
-     */
-    public function removeSubSubSubCategory(\AppBundle\Entity\Subsubsubcategory $subSubSubCategory)
-    {
-        $this->subSubSubCategories->removeElement($subSubSubCategory);
-    }
-
-    /**
-     * Get subSubSubCategories
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getSubSubSubCategories()
-    {
-        return $this->subSubSubCategories;
+        return $this->parentSubSubSubcategory;
     }
 }
