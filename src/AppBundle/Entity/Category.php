@@ -42,7 +42,7 @@ class Category
      /**
      * @ORM\OneToMany(targetEntity="Subcategory", mappedBy="parentCategory")
      */
-    private $subcategories;
+    private $subCategories;
     
     /**
      * @ORM\Column(name="swap_preference", nullable=true, options={"default":null})
@@ -62,7 +62,7 @@ class Category
     {
         $this->products = new ArrayCollection();
         $this->swapPreference1 = new ArrayCollection();
-        $this->subcategories = new ArrayCollection();
+        $this->subCategories = new ArrayCollection();
         
     }
 
@@ -184,40 +184,6 @@ class Category
     }
 
     /**
-     * Add subcategory
-     *
-     * @param \AppBundle\Entity\Subcategory $subcategory
-     *
-     * @return Category
-     */
-    public function addSubcategory(\AppBundle\Entity\Subcategory $subcategory)
-    {
-        $this->subcategories[] = $subcategory;
-
-        return $this;
-    }
-
-    /**
-     * Remove subcategory
-     *
-     * @param \AppBundle\Entity\Subcategory $subcategory
-     */
-    public function removeSubcategory(\AppBundle\Entity\Subcategory $subcategory)
-    {
-        $this->subcategories->removeElement($subcategory);
-    }
-
-    /**
-     * Get subcategories
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getSubcategories()
-    {
-        return $this->subcategories;
-    }
-
-    /**
      * Set isActive
      *
      * @param boolean $isActive
@@ -239,5 +205,39 @@ class Category
     public function getIsActive()
     {
         return $this->isActive;
+    }
+
+    /**
+     * Add subCategory
+     *
+     * @param \AppBundle\Entity\Subcategory $subCategory
+     *
+     * @return Category
+     */
+    public function addSubCategory(\AppBundle\Entity\Subcategory $subCategory)
+    {
+        $this->subCategories[] = $subCategory;
+
+        return $this;
+    }
+
+    /**
+     * Remove subCategory
+     *
+     * @param \AppBundle\Entity\Subcategory $subCategory
+     */
+    public function removeSubCategory(\AppBundle\Entity\Subcategory $subCategory)
+    {
+        $this->subCategories->removeElement($subCategory);
+    }
+
+    /**
+     * Get subCategories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSubCategories()
+    {
+        return $this->subCategories;
     }
 }

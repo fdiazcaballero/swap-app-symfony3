@@ -23,7 +23,7 @@ class Subcategory
     private $id;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="subcategories")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="subCategories")
      * @ORM\JoinColumn(name="parent_category_id", nullable=false, referencedColumnName="id")
      */
     private $parentCategory;
@@ -37,6 +37,11 @@ class Subcategory
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Subsubcategory", mappedBy="parentSubcategory")
+     */
+    private $subSubCategories;
     
     /**
      * @ORM\Column(name="swap_preference", nullable=true, options={"default":null})
@@ -53,7 +58,8 @@ class Subcategory
     
      public function __construct()
     {
-        $this->swapPreference = new ArrayCollection();        
+        $this->swapPreference = new ArrayCollection();
+        $this->subSubcategories = new ArrayCollection();
     }
 
 
@@ -209,5 +215,39 @@ class Subcategory
     public function getIsActive()
     {
         return $this->isActive;
+    }
+
+    /**
+     * Add subSubCategory
+     *
+     * @param \AppBundle\Entity\Subsubcategory $subSubCategory
+     *
+     * @return Subcategory
+     */
+    public function addSubSubCategory(\AppBundle\Entity\Subsubcategory $subSubCategory)
+    {
+        $this->subSubCategories[] = $subSubCategory;
+
+        return $this;
+    }
+
+    /**
+     * Remove subSubCategory
+     *
+     * @param \AppBundle\Entity\Subsubcategory $subSubCategory
+     */
+    public function removeSubSubCategory(\AppBundle\Entity\Subsubcategory $subSubCategory)
+    {
+        $this->subSubCategories->removeElement($subSubCategory);
+    }
+
+    /**
+     * Get subSubCategories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSubSubCategories()
+    {
+        return $this->subSubCategories;
     }
 }

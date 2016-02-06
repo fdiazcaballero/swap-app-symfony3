@@ -36,7 +36,7 @@ class SwapPreference
     
     /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="swapPreference")
-     * @ORM\JoinColumn(name="category_preference", nullable=false, referencedColumnName="id")
+     * @ORM\JoinColumn(name="category_preference", nullable=true, referencedColumnName="id")
      */
     private $categoryPreference;
         
@@ -51,6 +51,12 @@ class SwapPreference
      * @ORM\JoinColumn(name="subsubcategory_preference", nullable=true, referencedColumnName="id")
      */
     private $subsubcategoryPreference;
+    
+     /**
+     * @ORM\ManyToOne(targetEntity="Subsubsubcategory", inversedBy="swapPreference")
+     * @ORM\JoinColumn(name="subsubsubcategory_preference", nullable=true, referencedColumnName="id")
+     */
+    private $subsubsubcategoryPreference;
     
     /**
      * Note, that type of a field should be same as you set in Doctrine config
@@ -261,5 +267,29 @@ class SwapPreference
     public function getSubsubcategoryPreference()
     {
         return $this->subsubcategoryPreference;
+    }
+
+    /**
+     * Set subsubsubcategoryPreference
+     *
+     * @param \AppBundle\Entity\Subsubsubcategory $subsubsubcategoryPreference
+     *
+     * @return SwapPreference
+     */
+    public function setSubsubsubcategoryPreference(\AppBundle\Entity\Subsubsubcategory $subsubsubcategoryPreference = null)
+    {
+        $this->subsubsubcategoryPreference = $subsubsubcategoryPreference;
+
+        return $this;
+    }
+
+    /**
+     * Get subsubsubcategoryPreference
+     *
+     * @return \AppBundle\Entity\Subsubsubcategory
+     */
+    public function getSubsubsubcategoryPreference()
+    {
+        return $this->subsubsubcategoryPreference;
     }
 }
