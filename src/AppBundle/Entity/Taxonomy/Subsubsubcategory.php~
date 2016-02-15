@@ -1,17 +1,17 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace AppBundle\Entity\Taxonomy;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Subsubcategory
+ * Subsubsubcategory
  *
- * @ORM\Table(name="subsubcategory")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\SubsubcategoryRepository")
+ * @ORM\Table(name="subsubsubcategory")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\Taxonomy\SubsubsubcategoryRepository")
  */
-class Subsubcategory
+class Subsubsubcategory
 {
     /**
      * @var int
@@ -23,10 +23,10 @@ class Subsubcategory
     private $id;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Subcategory", inversedBy="subSubCategories")
-     * @ORM\JoinColumn(name="parent_subcategory_id", nullable=false, referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Subsubcategory", inversedBy="subSubSubCategories")
+     * @ORM\JoinColumn(name="parent_subsubcategory_id", nullable=false, referencedColumnName="id")
      */
-    private $parentSubcategory;
+    private $parentSubSubcategory;
 
     /**
      * @var string
@@ -40,19 +40,19 @@ class Subsubcategory
      */
     private $description;
     
-     /**
-     * @ORM\OneToMany(targetEntity="Subsubsubcategory", mappedBy="parentSubSubcategory")
-     */
-    private $subSubSubCategories;
-    
     /**
      * @ORM\Column(name="swap_preference", nullable=true, options={"default":null})
-     * @ORM\OneToMany(targetEntity="SwapPreference", mappedBy="subSubCategoryPreference")
+     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Product\SwapPreference", mappedBy="subSubSubCategoryPreference")
      */
     private $swapPreference;
     
     /**
-     * @ORM\OneToMany(targetEntity="Product", mappedBy="subSubCategory")
+     * @ORM\OneToMany(targetEntity="Furthersubcategory", mappedBy="parentSubSubSubcategory")
+     */
+    private $furtherSubCategories;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Product\Product", mappedBy="subSubSubCategory")
      */
     private $products;
     
@@ -67,7 +67,7 @@ class Subsubcategory
     {
         $this->products = new ArrayCollection();
         $this->swapPreference = new ArrayCollection(); 
-        $this->subSubSubCategories = new ArrayCollection();
+        $this->furtherSubCategories = new ArrayCollection();
         
     }
 
@@ -87,7 +87,7 @@ class Subsubcategory
      *
      * @param string $name
      *
-     * @return Subsubcategory
+     * @return Subsubsubcategory
      */
     public function setName($name)
     {
@@ -111,7 +111,7 @@ class Subsubcategory
      *
      * @param string $description
      *
-     * @return Subsubcategory
+     * @return Subsubsubcategory
      */
     public function setDescription($description)
     {
@@ -135,7 +135,7 @@ class Subsubcategory
      *
      * @param string $swapPreference
      *
-     * @return Subsubcategory
+     * @return Subsubsubcategory
      */
     public function setSwapPreference($swapPreference)
     {
@@ -159,7 +159,7 @@ class Subsubcategory
      *
      * @param boolean $isActive
      *
-     * @return Subsubcategory
+     * @return Subsubsubcategory
      */
     public function setIsActive($isActive)
     {
@@ -179,61 +179,61 @@ class Subsubcategory
     }
 
     /**
-     * Set parentSubcategory
+     * Set parentSubSubcategory
      *
-     * @param \AppBundle\Entity\Subcategory $parentSubcategory
+     * @param \AppBundle\Entity\Subsubcategory $parentSubSubcategory
      *
-     * @return Subsubcategory
+     * @return Subsubsubcategory
      */
-    public function setParentSubcategory(\AppBundle\Entity\Subcategory $parentSubcategory)
+    public function setParentSubSubcategory(\AppBundle\Entity\Subsubcategory $parentSubSubcategory)
     {
-        $this->parentSubcategory = $parentSubcategory;
+        $this->parentSubSubcategory = $parentSubSubcategory;
 
         return $this;
     }
 
     /**
-     * Get parentSubcategory
+     * Get parentSubSubcategory
      *
-     * @return \AppBundle\Entity\Subcategory
+     * @return \AppBundle\Entity\Subsubcategory
      */
-    public function getParentSubcategory()
+    public function getParentSubSubcategory()
     {
-        return $this->parentSubcategory;
+        return $this->parentSubSubcategory;
     }
 
     /**
-     * Add subSubSubCategory
+     * Add furtherSubCategory
      *
-     * @param \AppBundle\Entity\Subsubsubcategory $subSubSubCategory
+     * @param \AppBundle\Entity\Furthersubcategory $furtherSubCategory
      *
-     * @return Subsubcategory
+     * @return Subsubsubcategory
      */
-    public function addSubSubSubCategory(\AppBundle\Entity\Subsubsubcategory $subSubSubCategory)
+    public function addFurtherSubCategory(\AppBundle\Entity\Furthersubcategory $furtherSubCategory)
     {
-        $this->subSubSubCategories[] = $subSubSubCategory;
+        $this->furtherSubCategories[] = $furtherSubCategory;
 
         return $this;
     }
 
     /**
-     * Remove subSubSubCategory
+     * Remove furtherSubCategory
      *
-     * @param \AppBundle\Entity\Subsubsubcategory $subSubSubCategory
+     * @param \AppBundle\Entity\Furthersubcategory $furtherSubCategory
      */
-    public function removeSubSubSubCategory(\AppBundle\Entity\Subsubsubcategory $subSubSubCategory)
+    public function removeFurtherSubCategory(\AppBundle\Entity\Furthersubcategory $furtherSubCategory)
     {
-        $this->subSubSubCategories->removeElement($subSubSubCategory);
+        $this->furtherSubCategories->removeElement($furtherSubCategory);
     }
 
     /**
-     * Get subSubSubCategories
+     * Get furtherSubCategories
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getSubSubSubCategories()
+    public function getFurtherSubCategories()
     {
-        return $this->subSubSubCategories;
+        return $this->furtherSubCategories;
     }
 
     /**
@@ -241,7 +241,7 @@ class Subsubcategory
      *
      * @param \AppBundle\Entity\Product $product
      *
-     * @return Subsubcategory
+     * @return Subsubsubcategory
      */
     public function addProduct(\AppBundle\Entity\Product $product)
     {

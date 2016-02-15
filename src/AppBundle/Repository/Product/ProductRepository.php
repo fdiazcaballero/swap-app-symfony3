@@ -1,6 +1,7 @@
 <?php
 
-namespace AppBundle\Entity;
+//namespace AppBundle\Entity;
+namespace AppBundle\Repository\Product;
 
 /**
  * ProductRepository

@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace AppBundle\Entity\Taxonomy;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * Subcategory
  *
  * @ORM\Table(name="subcategory")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\SubcategoryRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\Taxonomy\SubcategoryRepository")
  */
 class Subcategory
 {
@@ -45,12 +45,12 @@ class Subcategory
     
     /**
      * @ORM\Column(name="swap_preference", nullable=true, options={"default":null})
-     * @ORM\OneToMany(targetEntity="SwapPreference", mappedBy="subCategoryPreference")
+     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Product\SwapPreference", mappedBy="subCategoryPreference")
      */
     private $swapPreference;
     
     /**
-     * @ORM\OneToMany(targetEntity="Product", mappedBy="subCategory")
+     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Product\Product", mappedBy="subCategory")
      */
     private $products;
     

@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace AppBundle\Entity\Location;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * Country
  *
  * @ORM\Table(name="country")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\CountryRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\Location\CountryRepository")
  */
 class Country
 {

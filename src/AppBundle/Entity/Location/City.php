@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace AppBundle\Entity\Location;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * City
  *
  * @ORM\Table(name="city")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\CityRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\Location\CountryRepository")
  */
 class City
 {

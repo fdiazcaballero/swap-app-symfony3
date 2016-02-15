@@ -1,16 +1,17 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace AppBundle\Entity\Location;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * State
+ * Country
  *
- * @ORM\Table(name="state")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\StateRepository")
+ * @ORM\Table(name="country")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\Location\CountryRepository")
  */
-class State
+class Country
 {
     /**
      * @var int
@@ -29,17 +30,11 @@ class State
     private $name;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Country", inversedBy="states")
-     * @ORM\JoinColumn(name="country_id", nullable=false, referencedColumnName="id")
-     */
-    private $country;
-    
-    /**
      * @var string
      *
-     * @ORM\Column(name="state_code", nullable=true, type="string", length=3)
+     * @ORM\Column(name="country_code", type="string", length=3)
      */
-    private $state_code;
+    private $country_code;
     
     /**
      * @var boolean
@@ -49,19 +44,25 @@ class State
     private $isActive;
     
     /**
-     * @ORM\OneToMany(targetEntity="City", mappedBy="state")
+     * @ORM\OneToMany(targetEntity="State", mappedBy="country")
+     */
+    private $states;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="City", mappedBy="country")
      */
     private $cities;
-
+    
      public function __construct()
     {
+        $this->states = new ArrayCollection();
         $this->cities = new ArrayCollection();
     }  
-    
+
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -73,7 +74,7 @@ class State
      *
      * @param string $name
      *
-     * @return State
+     * @return Country
      */
     public function setName($name)
     {
@@ -93,27 +94,27 @@ class State
     }
 
     /**
-     * Set stateCode
+     * Set countryCode
      *
-     * @param string $stateCode
+     * @param string $countryCode
      *
-     * @return State
+     * @return Country
      */
-    public function setStateCode($stateCode)
+    public function setCountryCode($countryCode)
     {
-        $this->state_code = $stateCode;
+        $this->country_code = $countryCode;
 
         return $this;
     }
 
     /**
-     * Get stateCode
+     * Get countryCode
      *
      * @return string
      */
-    public function getStateCode()
+    public function getCountryCode()
     {
-        return $this->state_code;
+        return $this->country_code;
     }
 
     /**
@@ -121,7 +122,7 @@ class State
      *
      * @param boolean $isActive
      *
-     * @return State
+     * @return Country
      */
     public function setIsActive($isActive)
     {
@@ -141,27 +142,37 @@ class State
     }
 
     /**
-     * Set country
+     * Add state
      *
-     * @param \AppBundle\Entity\Country $country
+     * @param \AppBundle\Entity\State $state
      *
-     * @return State
+     * @return Country
      */
-    public function setCountry(\AppBundle\Entity\Country $country = null)
+    public function addState(\AppBundle\Entity\State $state)
     {
-        $this->country = $country;
+        $this->states[] = $state;
 
         return $this;
     }
 
     /**
-     * Get country
+     * Remove state
      *
-     * @return \AppBundle\Entity\Country
+     * @param \AppBundle\Entity\State $state
      */
-    public function getCountry()
+    public function removeState(\AppBundle\Entity\State $state)
     {
-        return $this->country;
+        $this->states->removeElement($state);
+    }
+
+    /**
+     * Get states
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getStates()
+    {
+        return $this->states;
     }
 
     /**
@@ -169,7 +180,7 @@ class State
      *
      * @param \AppBundle\Entity\City $city
      *
-     * @return State
+     * @return Country
      */
     public function addCity(\AppBundle\Entity\City $city)
     {

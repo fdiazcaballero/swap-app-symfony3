@@ -1,13 +1,13 @@
 <?php
-// src/AppBundle/Entity/Product.php
-namespace AppBundle\Entity;
+// src/AppBundle/Entity/Product/Product.php
+namespace AppBundle\Entity\Product;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="product")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ProductRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\Product\ProductRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class Product
@@ -20,7 +20,7 @@ class Product
     private $id;
     
      /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="products")
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\User", inversedBy="products")
      * @ORM\JoinColumn(name="user_id", nullable=false, referencedColumnName="id")
      */
     private $user;
@@ -68,31 +68,31 @@ class Product
     private $swapPreference;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="products")
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Taxonomy\Category", inversedBy="products")
      * @ORM\JoinColumn(name="category_id", nullable=false, referencedColumnName="id")
      */
     private $category;
         
      /**
-     * @ORM\ManyToOne(targetEntity="Subcategory", inversedBy="products")
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Taxonomy\Subcategory", inversedBy="products")
      * @ORM\JoinColumn(name="subcategory_id", nullable=false, referencedColumnName="id")
      */
     private $subCategory;
     
      /**
-     * @ORM\ManyToOne(targetEntity="Subsubcategory", inversedBy="products")
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Taxonomy\Subsubcategory", inversedBy="products")
      * @ORM\JoinColumn(name="subsubcategory_id", nullable=true, referencedColumnName="id")
      */
     private $subSubCategory;
     
         /**
-     * @ORM\ManyToOne(targetEntity="Subsubsubcategory", inversedBy="products")
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Taxonomy\Subsubsubcategory", inversedBy="products")
      * @ORM\JoinColumn(name="subsubsubcategory_id", nullable=true, referencedColumnName="id")
      */
     private $subSubSubcategory;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Furthersubcategory", inversedBy="products")
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Taxonomy\Furthersubcategory", inversedBy="products")
      * @ORM\JoinColumn(name="furthersubcategory_id", nullable=true, referencedColumnName="id")
      */
     private $furtherSubCategory;

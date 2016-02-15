@@ -21,7 +21,7 @@ class User extends BaseUser
     protected $id;
     
     /**
-     * @ORM\OneToMany(targetEntity="Product", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Product\Product", mappedBy="user")
      */
     private $products;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace AppBundle\Entity\Product;
 
 use Doctrine\ORM\Mapping as ORM;
 use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
@@ -10,7 +10,7 @@ use AppBundle\DBAL\Types\GeographicSwapPreferenceType;
  * SwapPreference
  *
  * @ORM\Table(name="swap_preference")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\SwapPreferenceRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\Product\SwapPreferenceRepository")
  */
 class SwapPreference
 {
@@ -45,31 +45,31 @@ class SwapPreference
     private $isWillingToDeliver;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="swapPreference")
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Taxonomy\Category", inversedBy="swapPreference")
      * @ORM\JoinColumn(name="category_preference", nullable=true, referencedColumnName="id")
      */
     private $categoryPreference;
         
     /**
-     * @ORM\ManyToOne(targetEntity="Subcategory", inversedBy="swapPreference")
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Taxonomy\Subcategory", inversedBy="swapPreference")
      * @ORM\JoinColumn(name="subcategory_preference", nullable=true, referencedColumnName="id")
      */
     private $subCategoryPreference;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Subsubcategory", inversedBy="swapPreference")
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Taxonomy\Subsubcategory", inversedBy="swapPreference")
      * @ORM\JoinColumn(name="subsubcategory_preference", nullable=true, referencedColumnName="id")
      */
     private $subSubCategoryPreference;
     
      /**
-     * @ORM\ManyToOne(targetEntity="Subsubsubcategory", inversedBy="swapPreference")
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Taxonomy\Subsubsubcategory", inversedBy="swapPreference")
      * @ORM\JoinColumn(name="subsubsubcategory_preference", nullable=true, referencedColumnName="id")
      */
     private $subSubSubCategoryPreference;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Furthersubcategory", inversedBy="swapPreference")
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Taxonomy\Furthersubcategory", inversedBy="swapPreference")
      * @ORM\JoinColumn(name="furthersubcategory_preference", nullable=true, referencedColumnName="id")
      */
     private $furtherSubCategoryPreference;

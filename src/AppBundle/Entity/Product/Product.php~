@@ -1,13 +1,13 @@
 <?php
-// src/AppBundle/Entity/Product.php
-namespace AppBundle\Entity;
+// src/AppBundle/Entity/Product/Product.php
+namespace AppBundle\Entity\Product;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="product")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ProductRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\Product\ProductRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class Product
@@ -20,7 +20,7 @@ class Product
     private $id;
     
      /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="products")
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\User", inversedBy="products")
      * @ORM\JoinColumn(name="user_id", nullable=false, referencedColumnName="id")
      */
     private $user;

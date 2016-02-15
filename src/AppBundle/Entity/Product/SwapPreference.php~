@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace AppBundle\Entity\Product;
 
 use Doctrine\ORM\Mapping as ORM;
 use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
@@ -10,7 +10,7 @@ use AppBundle\DBAL\Types\GeographicSwapPreferenceType;
  * SwapPreference
  *
  * @ORM\Table(name="swap_preference")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\SwapPreferenceRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\Product\SwapPreferenceRepository")
  */
 class SwapPreference
 {
