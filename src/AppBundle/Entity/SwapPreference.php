@@ -40,6 +40,11 @@ class SwapPreference
     private $isFree;
     
     /**
+     * @ORM\Column(type="boolean", options={"default":0})
+     */
+    private $isWillingToDeliver;
+    
+    /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="swapPreference")
      * @ORM\JoinColumn(name="category_preference", nullable=true, referencedColumnName="id")
      */
@@ -336,5 +341,29 @@ class SwapPreference
     public function getIsFree()
     {
         return $this->isFree;
+    }
+
+    /**
+     * Set isWillingToDeliver
+     *
+     * @param boolean $isWillingToDeliver
+     *
+     * @return SwapPreference
+     */
+    public function setIsWillingToDeliver($isWillingToDeliver)
+    {
+        $this->isWillingToDeliver = $isWillingToDeliver;
+
+        return $this;
+    }
+
+    /**
+     * Get isWillingToDeliver
+     *
+     * @return boolean
+     */
+    public function getIsWillingToDeliver()
+    {
+        return $this->isWillingToDeliver;
     }
 }
