@@ -67,35 +67,13 @@ class Product
      */
     private $swapPreference;
     
-    /**
-     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Taxonomy\Category", inversedBy="products")
-     * @ORM\JoinColumn(name="category_id", nullable=false, referencedColumnName="id")
-     */
-    private $category;
-        
      /**
-     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Taxonomy\Subcategory", inversedBy="products")
-     * @ORM\JoinColumn(name="subcategory_id", nullable=false, referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="ProductTaxonomy", inversedBy="products")
+     * @ORM\JoinColumn(name="product_taxonomy_id", nullable=false, referencedColumnName="id")
      */
-    private $subCategory;
+    private $productTaxonomy;
     
-     /**
-     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Taxonomy\Subsubcategory", inversedBy="products")
-     * @ORM\JoinColumn(name="subsubcategory_id", nullable=true, referencedColumnName="id")
-     */
-    private $subSubCategory;
     
-        /**
-     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Taxonomy\Subsubsubcategory", inversedBy="products")
-     * @ORM\JoinColumn(name="subsubsubcategory_id", nullable=true, referencedColumnName="id")
-     */
-    private $subSubSubcategory;
-    
-    /**
-     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Taxonomy\Furthersubcategory", inversedBy="products")
-     * @ORM\JoinColumn(name="furthersubcategory_id", nullable=true, referencedColumnName="id")
-     */
-    private $furtherSubCategory;
 
     /**
      * Get id
@@ -155,29 +133,7 @@ class Product
         return $this->description;
     }
 
-    /**
-     * Set category
-     *
-     * @param \AppBundle\Entity\Category $category
-     *
-     * @return Product
-     */
-    public function setCategory(\AppBundle\Entity\Category $category = null)
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * Get category
-     *
-     * @return \AppBundle\Entity\Category
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
+    
     
     /**
     * @ORM\PrePersist
@@ -378,100 +334,29 @@ class Product
     {
         return $this->months;
     }
+    
 
     /**
-     * Set subCategory
+     * Set productTaxonomy
      *
-     * @param \AppBundle\Entity\Subcategory $subCategory
+     * @param \AppBundle\Entity\Product\ProductTaxonomy $productTaxonomy
      *
      * @return Product
      */
-    public function setSubCategory(\AppBundle\Entity\Subcategory $subCategory)
+    public function setProductTaxonomy(\AppBundle\Entity\Product\ProductTaxonomy $productTaxonomy)
     {
-        $this->subCategory = $subCategory;
+        $this->productTaxonomy = $productTaxonomy;
 
         return $this;
     }
 
     /**
-     * Get subCategory
+     * Get productTaxonomy
      *
-     * @return \AppBundle\Entity\Subcategory
+     * @return \AppBundle\Entity\Product\ProductTaxonomy
      */
-    public function getSubCategory()
+    public function getProductTaxonomy()
     {
-        return $this->subCategory;
-    }
-
-    /**
-     * Set subSubCategory
-     *
-     * @param \AppBundle\Entity\Subsubcategory $subSubCategory
-     *
-     * @return Product
-     */
-    public function setSubSubCategory(\AppBundle\Entity\Subsubcategory $subSubCategory = null)
-    {
-        $this->subSubCategory = $subSubCategory;
-
-        return $this;
-    }
-
-    /**
-     * Get subSubCategory
-     *
-     * @return \AppBundle\Entity\Subsubcategory
-     */
-    public function getSubSubCategory()
-    {
-        return $this->subSubCategory;
-    }
-
-    /**
-     * Set subSubSubcategory
-     *
-     * @param \AppBundle\Entity\Subsubsubcategory $subSubSubcategory
-     *
-     * @return Product
-     */
-    public function setSubSubSubcategory(\AppBundle\Entity\Subsubsubcategory $subSubSubcategory = null)
-    {
-        $this->subSubSubcategory = $subSubSubcategory;
-
-        return $this;
-    }
-
-    /**
-     * Get subSubSubcategory
-     *
-     * @return \AppBundle\Entity\Subsubsubcategory
-     */
-    public function getSubSubSubcategory()
-    {
-        return $this->subSubSubcategory;
-    }
-
-    /**
-     * Set furtherSubCategory
-     *
-     * @param \AppBundle\Entity\Furthersubcategory $furtherSubCategory
-     *
-     * @return Product
-     */
-    public function setFurtherSubCategory(\AppBundle\Entity\Furthersubcategory $furtherSubCategory = null)
-    {
-        $this->furtherSubCategory = $furtherSubCategory;
-
-        return $this;
-    }
-
-    /**
-     * Get furtherSubCategory
-     *
-     * @return \AppBundle\Entity\Furthersubcategory
-     */
-    public function getFurtherSubCategory()
-    {
-        return $this->furtherSubCategory;
+        return $this->productTaxonomy;
     }
 }

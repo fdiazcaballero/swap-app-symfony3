@@ -52,9 +52,9 @@ class Subsubsubcategory
     private $furtherSubCategories;
     
     /**
-     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Product\Product", mappedBy="subSubSubCategory")
+     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Product\ProductTaxonomy", mappedBy="subSubSubCategory")
      */
-    private $products;
+    private $productTaxonomies;
     
     /**
      * @var boolean
@@ -65,7 +65,7 @@ class Subsubsubcategory
     
      public function __construct()
     {
-        $this->products = new ArrayCollection();
+        $this->productTaxonomies = new ArrayCollection();
         $this->swapPreference = new ArrayCollection(); 
         $this->furtherSubCategories = new ArrayCollection();
         
@@ -237,36 +237,36 @@ class Subsubsubcategory
     }
 
     /**
-     * Add product
+     * Add productTaxonomy
      *
-     * @param \AppBundle\Entity\Product $product
+     * @param \AppBundle\Entity\Product\ProductTaxonomy $productTaxonomy
      *
      * @return Subsubsubcategory
      */
-    public function addProduct(\AppBundle\Entity\Product $product)
+    public function addProductTaxonomy(\AppBundle\Entity\Product\ProductTaxonomy $productTaxonomy)
     {
-        $this->products[] = $product;
+        $this->productTaxonomies[] = $productTaxonomy;
 
         return $this;
     }
 
     /**
-     * Remove product
+     * Remove productTaxonomy
      *
-     * @param \AppBundle\Entity\Product $product
+     * @param \AppBundle\Entity\Product\ProductTaxonomy $productTaxonomy
      */
-    public function removeProduct(\AppBundle\Entity\Product $product)
+    public function removeProductTaxonomy(\AppBundle\Entity\Product\ProductTaxonomy $productTaxonomy)
     {
-        $this->products->removeElement($product);
+        $this->productTaxonomies->removeElement($productTaxonomy);
     }
 
     /**
-     * Get products
+     * Get productTaxonomies
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getProducts()
+    public function getProductTaxonomies()
     {
-        return $this->products;
+        return $this->productTaxonomies;
     }
 }

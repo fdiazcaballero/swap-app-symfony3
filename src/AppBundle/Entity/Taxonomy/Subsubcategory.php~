@@ -50,11 +50,11 @@ class Subsubcategory
      * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Product\SwapPreference", mappedBy="subSubCategoryPreference")
      */
     private $swapPreference;
-    
+       
     /**
-     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Product\Product", mappedBy="subSubCategory")
+     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Product\ProductTaxonomy", mappedBy="subSubCategory")
      */
-    private $products;
+    private $productTaxonomies;
     
     /**
      * @var boolean
@@ -65,7 +65,7 @@ class Subsubcategory
     
      public function __construct()
     {
-        $this->products = new ArrayCollection();
+        $this->productTaxonomies = new ArrayCollection();
         $this->swapPreference = new ArrayCollection(); 
         $this->subSubSubCategories = new ArrayCollection();
         
@@ -237,36 +237,36 @@ class Subsubcategory
     }
 
     /**
-     * Add product
+     * Add productTaxonomy
      *
-     * @param \AppBundle\Entity\Product $product
+     * @param \AppBundle\Entity\Product\ProductTaxonomy $productTaxonomy
      *
      * @return Subsubcategory
      */
-    public function addProduct(\AppBundle\Entity\Product $product)
+    public function addProductTaxonomy(\AppBundle\Entity\Product\ProductTaxonomy $productTaxonomy)
     {
-        $this->products[] = $product;
+        $this->productTaxonomies[] = $productTaxonomy;
 
         return $this;
     }
 
     /**
-     * Remove product
+     * Remove productTaxonomy
      *
-     * @param \AppBundle\Entity\Product $product
+     * @param \AppBundle\Entity\Product\ProductTaxonomy $productTaxonomy
      */
-    public function removeProduct(\AppBundle\Entity\Product $product)
+    public function removeProductTaxonomy(\AppBundle\Entity\Product\ProductTaxonomy $productTaxonomy)
     {
-        $this->products->removeElement($product);
+        $this->productTaxonomies->removeElement($productTaxonomy);
     }
 
     /**
-     * Get products
+     * Get productTaxonomies
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getProducts()
+    public function getProductTaxonomies()
     {
-        return $this->products;
+        return $this->productTaxonomies;
     }
 }

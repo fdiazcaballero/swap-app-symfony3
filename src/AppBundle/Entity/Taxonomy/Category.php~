@@ -35,9 +35,9 @@ class Category
     private $description;
     
     /**
-     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Product\Product", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Product\ProductTaxonomy", mappedBy="category")
      */
-    private $products;
+    private $productTaxonomies;
     
      /**
      * @ORM\OneToMany(targetEntity="Subcategory", mappedBy="parentCategory")
@@ -60,7 +60,7 @@ class Category
 
     public function __construct()
     {
-        $this->products = new ArrayCollection();
+        $this->productTaxonomies = new ArrayCollection();
         $this->swapPreference1 = new ArrayCollection();
         $this->subCategories = new ArrayCollection();
         
@@ -99,40 +99,6 @@ class Category
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Add product
-     *
-     * @param \AppBundle\Entity\Product $product
-     *
-     * @return Category
-     */
-    public function addProduct(\AppBundle\Entity\Product $product)
-    {
-        $this->products[] = $product;
-
-        return $this;
-    }
-
-    /**
-     * Remove product
-     *
-     * @param \AppBundle\Entity\Product $product
-     */
-    public function removeProduct(\AppBundle\Entity\Product $product)
-    {
-        $this->products->removeElement($product);
-    }
-
-    /**
-     * Get products
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getProducts()
-    {
-        return $this->products;
     }
 
     /**
@@ -239,5 +205,39 @@ class Category
     public function getSubCategories()
     {
         return $this->subCategories;
+    }
+
+    /**
+     * Add productTaxonomy
+     *
+     * @param \AppBundle\Entity\Product\ProductTaxonomy $productTaxonomy
+     *
+     * @return Category
+     */
+    public function addProductTaxonomy(\AppBundle\Entity\Product\ProductTaxonomy $productTaxonomy)
+    {
+        $this->productTaxonomies[] = $productTaxonomy;
+
+        return $this;
+    }
+
+    /**
+     * Remove productTaxonomy
+     *
+     * @param \AppBundle\Entity\Product\ProductTaxonomy $productTaxonomy
+     */
+    public function removeProductTaxonomy(\AppBundle\Entity\Product\ProductTaxonomy $productTaxonomy)
+    {
+        $this->productTaxonomies->removeElement($productTaxonomy);
+    }
+
+    /**
+     * Get productTaxonomies
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProductTaxonomies()
+    {
+        return $this->productTaxonomies;
     }
 }
