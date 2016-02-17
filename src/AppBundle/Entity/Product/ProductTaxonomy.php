@@ -34,26 +34,26 @@ class ProductTaxonomy
     private $category;
         
      /**
-     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Taxonomy\Subcategory", inversedBy="productTaxonomies")
-     * @ORM\JoinColumn(name="subcategory_id", nullable=false, referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Taxonomy\SubCategory", inversedBy="productTaxonomies")
+     * @ORM\JoinColumn(name="sub_category_id", nullable=false, referencedColumnName="id")
      */
     private $subCategory;
     
      /**
-     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Taxonomy\Subsubcategory", inversedBy="productTaxonomies")
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Taxonomy\SubsubCategory", inversedBy="productTaxonomies")
      * @ORM\JoinColumn(name="subsubcategory_id", nullable=true, referencedColumnName="id")
      */
     private $subSubCategory;
     
         /**
-     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Taxonomy\Subsubsubcategory", inversedBy="productTaxonomies")
-     * @ORM\JoinColumn(name="subsubsubcategory_id", nullable=true, referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Taxonomy\SubsubsubCategory", inversedBy="productTaxonomies")
+     * @ORM\JoinColumn(name="subsubsub_category_id", nullable=true, referencedColumnName="id")
      */
-    private $subSubSubcategory;
+    private $subSubSubCategory;
     
     /**
-     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Taxonomy\Furthersubcategory", inversedBy="productTaxonomies")
-     * @ORM\JoinColumn(name="furthersubcategory_id", nullable=true, referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Taxonomy\FurtherSubCategory", inversedBy="productTaxonomies")
+     * @ORM\JoinColumn(name="further_sub_category_id", nullable=true, referencedColumnName="id")
      */
     private $furtherSubCategory;
     
@@ -63,16 +63,16 @@ class ProductTaxonomy
     } 
 
 
+
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
     }
-
 
     /**
      * Add product
@@ -135,11 +135,11 @@ class ProductTaxonomy
     /**
      * Set subCategory
      *
-     * @param \AppBundle\Entity\Taxonomy\Subcategory $subCategory
+     * @param \AppBundle\Entity\Taxonomy\SubCategory $subCategory
      *
      * @return ProductTaxonomy
      */
-    public function setSubCategory(\AppBundle\Entity\Taxonomy\Subcategory $subCategory)
+    public function setSubCategory(\AppBundle\Entity\Taxonomy\SubCategory $subCategory)
     {
         $this->subCategory = $subCategory;
 
@@ -149,7 +149,7 @@ class ProductTaxonomy
     /**
      * Get subCategory
      *
-     * @return \AppBundle\Entity\Taxonomy\Subcategory
+     * @return \AppBundle\Entity\Taxonomy\SubCategory
      */
     public function getSubCategory()
     {
@@ -159,11 +159,11 @@ class ProductTaxonomy
     /**
      * Set subSubCategory
      *
-     * @param \AppBundle\Entity\Taxonomy\Subsubcategory $subSubCategory
+     * @param \AppBundle\Entity\Taxonomy\SubsubCategory $subSubCategory
      *
      * @return ProductTaxonomy
      */
-    public function setSubSubCategory(\AppBundle\Entity\Taxonomy\Subsubcategory $subSubCategory = null)
+    public function setSubSubCategory(\AppBundle\Entity\Taxonomy\SubsubCategory $subSubCategory = null)
     {
         $this->subSubCategory = $subSubCategory;
 
@@ -173,7 +173,7 @@ class ProductTaxonomy
     /**
      * Get subSubCategory
      *
-     * @return \AppBundle\Entity\Taxonomy\Subsubcategory
+     * @return \AppBundle\Entity\Taxonomy\SubsubCategory
      */
     public function getSubSubCategory()
     {
@@ -181,37 +181,37 @@ class ProductTaxonomy
     }
 
     /**
-     * Set subSubSubcategory
+     * Set subSubSubCategory
      *
-     * @param \AppBundle\Entity\Taxonomy\Subsubsubcategory $subSubSubcategory
+     * @param \AppBundle\Entity\Taxonomy\SubsubsubCategory $subSubSubCategory
      *
      * @return ProductTaxonomy
      */
-    public function setSubSubSubcategory(\AppBundle\Entity\Taxonomy\Subsubsubcategory $subSubSubcategory = null)
+    public function setSubSubSubCategory(\AppBundle\Entity\Taxonomy\SubsubsubCategory $subSubSubCategory = null)
     {
-        $this->subSubSubcategory = $subSubSubcategory;
+        $this->subSubSubCategory = $subSubSubCategory;
 
         return $this;
     }
 
     /**
-     * Get subSubSubcategory
+     * Get subSubSubCategory
      *
-     * @return \AppBundle\Entity\Taxonomy\Subsubsubcategory
+     * @return \AppBundle\Entity\Taxonomy\SubsubsubCategory
      */
-    public function getSubSubSubcategory()
+    public function getSubSubSubCategory()
     {
-        return $this->subSubSubcategory;
+        return $this->subSubSubCategory;
     }
 
     /**
      * Set furtherSubCategory
      *
-     * @param \AppBundle\Entity\Taxonomy\Furthersubcategory $furtherSubCategory
+     * @param \AppBundle\Entity\Taxonomy\FurtherSubCategory $furtherSubCategory
      *
      * @return ProductTaxonomy
      */
-    public function setFurtherSubCategory(\AppBundle\Entity\Taxonomy\Furthersubcategory $furtherSubCategory = null)
+    public function setFurtherSubCategory(\AppBundle\Entity\Taxonomy\FurtherSubCategory $furtherSubCategory = null)
     {
         $this->furtherSubCategory = $furtherSubCategory;
 
@@ -221,7 +221,7 @@ class ProductTaxonomy
     /**
      * Get furtherSubCategory
      *
-     * @return \AppBundle\Entity\Taxonomy\Furthersubcategory
+     * @return \AppBundle\Entity\Taxonomy\FurtherSubCategory
      */
     public function getFurtherSubCategory()
     {

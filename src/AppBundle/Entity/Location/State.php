@@ -53,10 +53,16 @@ class State
      * @ORM\OneToMany(targetEntity="City", mappedBy="state")
      */
     private $cities;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Product\ProductLocation", mappedBy="state")
+     */
+    private $productLocations;
 
      public function __construct()
     {
         $this->cities = new ArrayCollection();
+        $this->productLocations = new ArrayCollection();
     }  
     
     /**
@@ -197,5 +203,39 @@ class State
     public function getCities()
     {
         return $this->cities;
+    }
+
+    /**
+     * Add productLocation
+     *
+     * @param \AppBundle\Entity\Product\ProductLocation $productLocation
+     *
+     * @return State
+     */
+    public function addProductLocation(\AppBundle\Entity\Product\ProductLocation $productLocation)
+    {
+        $this->productLocations[] = $productLocation;
+
+        return $this;
+    }
+
+    /**
+     * Remove productLocation
+     *
+     * @param \AppBundle\Entity\Product\ProductLocation $productLocation
+     */
+    public function removeProductLocation(\AppBundle\Entity\Product\ProductLocation $productLocation)
+    {
+        $this->productLocations->removeElement($productLocation);
+    }
+
+    /**
+     * Get productLocations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProductLocations()
+    {
+        return $this->productLocations;
     }
 }

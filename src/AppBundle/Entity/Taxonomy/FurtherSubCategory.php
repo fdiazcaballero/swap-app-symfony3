@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Subcategory
+ * FurtherSubCategory
  *
- * @ORM\Table(name="subcategory")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\Taxonomy\SubcategoryRepository")
+ * @ORM\Table(name="further_subcategory")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\Taxonomy\FurtherSubCategoryRepository")
  */
-class Subcategory
+class FurtherSubCategory
 {
     /**
      * @var int
@@ -22,14 +22,16 @@ class Subcategory
      */
     private $id;
     
-    /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="subCategories")
-     * @ORM\JoinColumn(name="parent_category_id", nullable=false, referencedColumnName="id")
+     /**
+     * @ORM\ManyToOne(targetEntity="SubsubsubCategory", inversedBy="furtherSubCategories")
+     * @ORM\JoinColumn(name="parent_subsubsub_category_id", nullable=false, referencedColumnName="id")
      */
-    private $parentCategory;
+    private $parentSubSubSubCategory;
 
     /**
-     * @ORM\Column(type="string", length=63, unique=true)
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=63, unique=true)
      */
     private $name;
     
@@ -39,18 +41,13 @@ class Subcategory
     private $description;
     
     /**
-     * @ORM\OneToMany(targetEntity="Subsubcategory", mappedBy="parentSubcategory")
-     */
-    private $subSubCategories;
-    
-    /**
      * @ORM\Column(name="swap_preference", nullable=true, options={"default":null})
-     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Product\SwapPreference", mappedBy="subCategoryPreference")
+     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Product\SwapPreference", mappedBy="furtherSubCategoryPreference")
      */
     private $swapPreference;
-    
+        
     /**
-     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Product\ProductTaxonomy", mappedBy="subCategory")
+     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Product\ProductTaxonomy", mappedBy="furtherSubCategory")
      */
     private $productTaxonomies;
     
@@ -64,15 +61,15 @@ class Subcategory
      public function __construct()
     {
         $this->productTaxonomies = new ArrayCollection();
-        $this->swapPreference = new ArrayCollection();
-        $this->subSubCategories = new ArrayCollection();
+        $this->swapPreference = new ArrayCollection();         
     }
+
 
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -84,7 +81,7 @@ class Subcategory
      *
      * @param string $name
      *
-     * @return Subcategory
+     * @return FurtherSubCategory
      */
     public function setName($name)
     {
@@ -104,35 +101,11 @@ class Subcategory
     }
 
     /**
-     * Set category
-     *
-     * @param integer $category
-     *
-     * @return Subcategory
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * Get category
-     *
-     * @return int
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
      * Set description
      *
      * @param string $description
      *
-     * @return Subcategory
+     * @return FurtherSubCategory
      */
     public function setDescription($description)
     {
@@ -156,7 +129,7 @@ class Subcategory
      *
      * @param string $swapPreference
      *
-     * @return Subcategory
+     * @return FurtherSubCategory
      */
     public function setSwapPreference($swapPreference)
     {
@@ -176,35 +149,11 @@ class Subcategory
     }
 
     /**
-     * Set parentCategory
-     *
-     * @param \AppBundle\Entity\Category $parentCategory
-     *
-     * @return Subcategory
-     */
-    public function setParentCategory(\AppBundle\Entity\Category $parentCategory = null)
-    {
-        $this->parentCategory = $parentCategory;
-
-        return $this;
-    }
-
-    /**
-     * Get parentCategory
-     *
-     * @return \AppBundle\Entity\Category
-     */
-    public function getParentCategory()
-    {
-        return $this->parentCategory;
-    }
-
-    /**
      * Set isActive
      *
      * @param boolean $isActive
      *
-     * @return Subcategory
+     * @return FurtherSubCategory
      */
     public function setIsActive($isActive)
     {
@@ -224,37 +173,27 @@ class Subcategory
     }
 
     /**
-     * Add subSubCategory
+     * Set parentSubSubSubCategory
      *
-     * @param \AppBundle\Entity\Subsubcategory $subSubCategory
+     * @param \AppBundle\Entity\Taxonomy\SubsubsubCategory $parentSubSubSubCategory
      *
-     * @return Subcategory
+     * @return FurtherSubCategory
      */
-    public function addSubSubCategory(\AppBundle\Entity\Subsubcategory $subSubCategory)
+    public function setParentSubSubSubCategory(\AppBundle\Entity\Taxonomy\SubsubsubCategory $parentSubSubSubCategory)
     {
-        $this->subSubCategories[] = $subSubCategory;
+        $this->parentSubSubSubCategory = $parentSubSubSubCategory;
 
         return $this;
     }
 
     /**
-     * Remove subSubCategory
+     * Get parentSubSubSubCategory
      *
-     * @param \AppBundle\Entity\Subsubcategory $subSubCategory
+     * @return \AppBundle\Entity\Taxonomy\SubsubsubCategory
      */
-    public function removeSubSubCategory(\AppBundle\Entity\Subsubcategory $subSubCategory)
+    public function getParentSubSubSubCategory()
     {
-        $this->subSubCategories->removeElement($subSubCategory);
-    }
-
-    /**
-     * Get subSubCategories
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getSubSubCategories()
-    {
-        return $this->subSubCategories;
+        return $this->parentSubSubSubCategory;
     }
 
     /**
@@ -262,7 +201,7 @@ class Subcategory
      *
      * @param \AppBundle\Entity\Product\ProductTaxonomy $productTaxonomy
      *
-     * @return Subcategory
+     * @return FurtherSubCategory
      */
     public function addProductTaxonomy(\AppBundle\Entity\Product\ProductTaxonomy $productTaxonomy)
     {

@@ -73,7 +73,13 @@ class Product
      */
     private $productTaxonomy;
     
+    /**
+     * @ORM\ManyToOne(targetEntity="ProductLocation", inversedBy="products")
+     * @ORM\JoinColumn(name="product_location_id", nullable=false, referencedColumnName="id")
+     */
+    private $productLocation;
     
+   
 
     /**
      * Get id
@@ -131,136 +137,6 @@ class Product
     public function getDescription()
     {
         return $this->description;
-    }
-
-    
-    
-    /**
-    * @ORM\PrePersist
-    */
-    public function setCreatedAtValue()
-    {
-        $this->createdAt = new \DateTime();
-    }
-
-    /**
-     * Set createdAt
-     *
-     * @param \DateTime $createdAt
-     *
-     * @return Product
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Set isFree
-     *
-     * @param boolean $isFree
-     *
-     * @return Product
-     */
-    public function setIsFree($isFree)
-    {
-        $this->isFree = $isFree;
-
-        return $this;
-    }
-
-    /**
-     * Get isFree
-     *
-     * @return boolean
-     */
-    public function getIsFree()
-    {
-        return $this->isFree;
-    }
-
-    /**
-     * Set swapPreference
-     *
-     * @param \AppBundle\Entity\SwapPreference $swapPreference
-     *
-     * @return Product
-     */
-    public function setSwapPreference(\AppBundle\Entity\SwapPreference $swapPreference = null)
-    {
-        $this->swapPreference = $swapPreference;
-
-        return $this;
-    }
-
-    /**
-     * Get swapPreference
-     *
-     * @return \AppBundle\Entity\SwapPreference
-     */
-    public function getSwapPreference()
-    {
-        return $this->swapPreference;
-    }
-
-    /**
-     * Set hasPhoto
-     *
-     * @param boolean $hasPhoto
-     *
-     * @return Product
-     */
-    public function setHasPhoto($hasPhoto)
-    {
-        $this->hasPhoto = $hasPhoto;
-
-        return $this;
-    }
-
-    /**
-     * Get hasPhoto
-     *
-     * @return boolean
-     */
-    public function getHasPhoto()
-    {
-        return $this->hasPhoto;
-    }
-
-    /**
-     * Set user
-     *
-     * @param \AppBundle\Entity\User $user
-     *
-     * @return Product
-     */
-    public function setUser(\AppBundle\Entity\User $user)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \AppBundle\Entity\User
-     */
-    public function getUser()
-    {
-        return $this->user;
     }
 
     /**
@@ -334,7 +210,102 @@ class Product
     {
         return $this->months;
     }
-    
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Product
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set hasPhoto
+     *
+     * @param boolean $hasPhoto
+     *
+     * @return Product
+     */
+    public function setHasPhoto($hasPhoto)
+    {
+        $this->hasPhoto = $hasPhoto;
+
+        return $this;
+    }
+
+    /**
+     * Get hasPhoto
+     *
+     * @return boolean
+     */
+    public function getHasPhoto()
+    {
+        return $this->hasPhoto;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Product
+     */
+    public function setUser(\AppBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set swapPreference
+     *
+     * @param \AppBundle\Entity\Product\SwapPreference $swapPreference
+     *
+     * @return Product
+     */
+    public function setSwapPreference(\AppBundle\Entity\Product\SwapPreference $swapPreference = null)
+    {
+        $this->swapPreference = $swapPreference;
+
+        return $this;
+    }
+
+    /**
+     * Get swapPreference
+     *
+     * @return \AppBundle\Entity\Product\SwapPreference
+     */
+    public function getSwapPreference()
+    {
+        return $this->swapPreference;
+    }
 
     /**
      * Set productTaxonomy
@@ -358,5 +329,29 @@ class Product
     public function getProductTaxonomy()
     {
         return $this->productTaxonomy;
+    }
+
+    /**
+     * Set productLocation
+     *
+     * @param \AppBundle\Entity\Product\ProductLocation $productLocation
+     *
+     * @return Product
+     */
+    public function setProductLocation(\AppBundle\Entity\Product\ProductLocation $productLocation)
+    {
+        $this->productLocation = $productLocation;
+
+        return $this;
+    }
+
+    /**
+     * Get productLocation
+     *
+     * @return \AppBundle\Entity\Product\ProductLocation
+     */
+    public function getProductLocation()
+    {
+        return $this->productLocation;
     }
 }

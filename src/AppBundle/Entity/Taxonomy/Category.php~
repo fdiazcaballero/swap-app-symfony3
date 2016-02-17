@@ -40,7 +40,7 @@ class Category
     private $productTaxonomies;
     
      /**
-     * @ORM\OneToMany(targetEntity="Subcategory", mappedBy="parentCategory")
+     * @ORM\OneToMany(targetEntity="SubCategory", mappedBy="parentCategory")
      */
     private $subCategories;
     
@@ -61,7 +61,7 @@ class Category
     public function __construct()
     {
         $this->productTaxonomies = new ArrayCollection();
-        $this->swapPreference1 = new ArrayCollection();
+        $this->swapPreference = new ArrayCollection();
         $this->subCategories = new ArrayCollection();
         
     }
@@ -70,7 +70,7 @@ class Category
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -102,30 +102,6 @@ class Category
     }
 
     /**
-     * Set swapPreference
-     *
-     * @param string $swapPreference
-     *
-     * @return Category
-     */
-    public function setSwapPreference($swapPreference)
-    {
-        $this->swapPreference = $swapPreference;
-
-        return $this;
-    }
-
-    /**
-     * Get swapPreference
-     *
-     * @return string
-     */
-    public function getSwapPreference()
-    {
-        return $this->swapPreference;
-    }
-
-    /**
      * Set description
      *
      * @param string $description
@@ -150,6 +126,30 @@ class Category
     }
 
     /**
+     * Set swapPreference
+     *
+     * @param string $swapPreference
+     *
+     * @return Category
+     */
+    public function setSwapPreference($swapPreference)
+    {
+        $this->swapPreference = $swapPreference;
+
+        return $this;
+    }
+
+    /**
+     * Get swapPreference
+     *
+     * @return string
+     */
+    public function getSwapPreference()
+    {
+        return $this->swapPreference;
+    }
+
+    /**
      * Set isActive
      *
      * @param boolean $isActive
@@ -171,40 +171,6 @@ class Category
     public function getIsActive()
     {
         return $this->isActive;
-    }
-
-    /**
-     * Add subCategory
-     *
-     * @param \AppBundle\Entity\Subcategory $subCategory
-     *
-     * @return Category
-     */
-    public function addSubCategory(\AppBundle\Entity\Subcategory $subCategory)
-    {
-        $this->subCategories[] = $subCategory;
-
-        return $this;
-    }
-
-    /**
-     * Remove subCategory
-     *
-     * @param \AppBundle\Entity\Subcategory $subCategory
-     */
-    public function removeSubCategory(\AppBundle\Entity\Subcategory $subCategory)
-    {
-        $this->subCategories->removeElement($subCategory);
-    }
-
-    /**
-     * Get subCategories
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getSubCategories()
-    {
-        return $this->subCategories;
     }
 
     /**
@@ -239,5 +205,39 @@ class Category
     public function getProductTaxonomies()
     {
         return $this->productTaxonomies;
+    }
+
+    /**
+     * Add subCategory
+     *
+     * @param \AppBundle\Entity\Taxonomy\SubCategory $subCategory
+     *
+     * @return Category
+     */
+    public function addSubCategory(\AppBundle\Entity\Taxonomy\SubCategory $subCategory)
+    {
+        $this->subCategories[] = $subCategory;
+
+        return $this;
+    }
+
+    /**
+     * Remove subCategory
+     *
+     * @param \AppBundle\Entity\Taxonomy\SubCategory $subCategory
+     */
+    public function removeSubCategory(\AppBundle\Entity\Taxonomy\SubCategory $subCategory)
+    {
+        $this->subCategories->removeElement($subCategory);
+    }
+
+    /**
+     * Get subCategories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSubCategories()
+    {
+        return $this->subCategories;
     }
 }

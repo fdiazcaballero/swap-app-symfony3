@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Furthersubcategory
+ * FurtherSubCategory
  *
- * @ORM\Table(name="furthersubcategory")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\Taxonomy\FurthersubcategoryRepository")
+ * @ORM\Table(name="further_subcategory")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\Taxonomy\FurtherSubCategoryRepository")
  */
-class Furthersubcategory
+class FurtherSubCategory
 {
     /**
      * @var int
@@ -23,10 +23,10 @@ class Furthersubcategory
     private $id;
     
      /**
-     * @ORM\ManyToOne(targetEntity="Subsubsubcategory", inversedBy="FurtherSubCategories")
-     * @ORM\JoinColumn(name="parent_subsubsubcategory_id", nullable=false, referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="SubsubsubCategory", inversedBy="furtherSubCategories")
+     * @ORM\JoinColumn(name="parent_subsubsub_category_id", nullable=false, referencedColumnName="id")
      */
-    private $parentSubSubSubcategory;
+    private $parentSubSubSubCategory;
 
     /**
      * @var string
@@ -42,7 +42,7 @@ class Furthersubcategory
     
     /**
      * @ORM\Column(name="swap_preference", nullable=true, options={"default":null})
-     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Product\SwapPreference", mappedBy="furtherSubcategoryPreference")
+     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Product\SwapPreference", mappedBy="furtherSubCategoryPreference")
      */
     private $swapPreference;
         
@@ -69,7 +69,7 @@ class Furthersubcategory
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -81,7 +81,7 @@ class Furthersubcategory
      *
      * @param string $name
      *
-     * @return Furthersubcategory
+     * @return FurtherSubCategory
      */
     public function setName($name)
     {
@@ -105,7 +105,7 @@ class Furthersubcategory
      *
      * @param string $description
      *
-     * @return Furthersubcategory
+     * @return FurtherSubCategory
      */
     public function setDescription($description)
     {
@@ -129,7 +129,7 @@ class Furthersubcategory
      *
      * @param string $swapPreference
      *
-     * @return Furthersubcategory
+     * @return FurtherSubCategory
      */
     public function setSwapPreference($swapPreference)
     {
@@ -153,7 +153,7 @@ class Furthersubcategory
      *
      * @param boolean $isActive
      *
-     * @return Furthersubcategory
+     * @return FurtherSubCategory
      */
     public function setIsActive($isActive)
     {
@@ -173,27 +173,27 @@ class Furthersubcategory
     }
 
     /**
-     * Set parentSubSubSubcategory
+     * Set parentSubSubSubCategory
      *
-     * @param \AppBundle\Entity\Subsubsubcategory $parentSubSubSubcategory
+     * @param \AppBundle\Entity\Taxonomy\SubsubsubCategory $parentSubSubSubCategory
      *
-     * @return Furthersubcategory
+     * @return FurtherSubCategory
      */
-    public function setParentSubSubSubcategory(\AppBundle\Entity\Subsubsubcategory $parentSubSubSubcategory)
+    public function setParentSubSubSubCategory(\AppBundle\Entity\Taxonomy\SubsubsubCategory $parentSubSubSubCategory)
     {
-        $this->parentSubSubSubcategory = $parentSubSubSubcategory;
+        $this->parentSubSubSubCategory = $parentSubSubSubCategory;
 
         return $this;
     }
 
     /**
-     * Get parentSubSubSubcategory
+     * Get parentSubSubSubCategory
      *
-     * @return \AppBundle\Entity\Subsubsubcategory
+     * @return \AppBundle\Entity\Taxonomy\SubsubsubCategory
      */
-    public function getParentSubSubSubcategory()
+    public function getParentSubSubSubCategory()
     {
-        return $this->parentSubSubSubcategory;
+        return $this->parentSubSubSubCategory;
     }
 
     /**
@@ -201,7 +201,7 @@ class Furthersubcategory
      *
      * @param \AppBundle\Entity\Product\ProductTaxonomy $productTaxonomy
      *
-     * @return Furthersubcategory
+     * @return FurtherSubCategory
      */
     public function addProductTaxonomy(\AppBundle\Entity\Product\ProductTaxonomy $productTaxonomy)
     {

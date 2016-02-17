@@ -39,6 +39,16 @@ class City
      * @ORM\JoinColumn(name="country_id", nullable=false, referencedColumnName="id")
      */
     private $country;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Product\ProductLocation", mappedBy="city")
+     */
+    private $productLocations;
+    
+    public function __construct()
+    {
+        $this->productLocations = new ArrayCollection();
+    } 
 
     /**
      * Get id
@@ -120,5 +130,39 @@ class City
     public function getCountry()
     {
         return $this->country;
+    }
+
+    /**
+     * Add productLocation
+     *
+     * @param \AppBundle\Entity\Product\ProductLocation $productLocation
+     *
+     * @return City
+     */
+    public function addProductLocation(\AppBundle\Entity\Product\ProductLocation $productLocation)
+    {
+        $this->productLocations[] = $productLocation;
+
+        return $this;
+    }
+
+    /**
+     * Remove productLocation
+     *
+     * @param \AppBundle\Entity\Product\ProductLocation $productLocation
+     */
+    public function removeProductLocation(\AppBundle\Entity\Product\ProductLocation $productLocation)
+    {
+        $this->productLocations->removeElement($productLocation);
+    }
+
+    /**
+     * Get productLocations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProductLocations()
+    {
+        return $this->productLocations;
     }
 }
