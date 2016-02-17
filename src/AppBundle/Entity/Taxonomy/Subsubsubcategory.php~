@@ -72,4 +72,202 @@ class SubsubsubCategory
     }
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return SubsubsubCategory
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return SubsubsubCategory
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set swapPreference
+     *
+     * @param string $swapPreference
+     *
+     * @return SubsubsubCategory
+     */
+    public function setSwapPreference($swapPreference)
+    {
+        $this->swapPreference = $swapPreference;
+
+        return $this;
+    }
+
+    /**
+     * Get swapPreference
+     *
+     * @return string
+     */
+    public function getSwapPreference()
+    {
+        return $this->swapPreference;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     *
+     * @return SubsubsubCategory
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * Set parentSubSubCategory
+     *
+     * @param \AppBundle\Entity\Taxonomy\SubsubCategory $parentSubSubCategory
+     *
+     * @return SubsubsubCategory
+     */
+    public function setParentSubSubCategory(\AppBundle\Entity\Taxonomy\SubsubCategory $parentSubSubCategory)
+    {
+        $this->parentSubSubCategory = $parentSubSubCategory;
+
+        return $this;
+    }
+
+    /**
+     * Get parentSubSubCategory
+     *
+     * @return \AppBundle\Entity\Taxonomy\SubsubCategory
+     */
+    public function getParentSubSubCategory()
+    {
+        return $this->parentSubSubCategory;
+    }
+
+    /**
+     * Add furtherSubCategory
+     *
+     * @param \AppBundle\Entity\Taxonomy\FurtherSubCategory $furtherSubCategory
+     *
+     * @return SubsubsubCategory
+     */
+    public function addFurtherSubCategory(\AppBundle\Entity\Taxonomy\FurtherSubCategory $furtherSubCategory)
+    {
+        $this->furtherSubCategories[] = $furtherSubCategory;
+
+        return $this;
+    }
+
+    /**
+     * Remove furtherSubCategory
+     *
+     * @param \AppBundle\Entity\Taxonomy\FurtherSubCategory $furtherSubCategory
+     */
+    public function removeFurtherSubCategory(\AppBundle\Entity\Taxonomy\FurtherSubCategory $furtherSubCategory)
+    {
+        $this->furtherSubCategories->removeElement($furtherSubCategory);
+    }
+
+    /**
+     * Get furtherSubCategories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFurtherSubCategories()
+    {
+        return $this->furtherSubCategories;
+    }
+
+    /**
+     * Add productTaxonomy
+     *
+     * @param \AppBundle\Entity\Product\ProductTaxonomy $productTaxonomy
+     *
+     * @return SubsubsubCategory
+     */
+    public function addProductTaxonomy(\AppBundle\Entity\Product\ProductTaxonomy $productTaxonomy)
+    {
+        $this->productTaxonomies[] = $productTaxonomy;
+
+        return $this;
+    }
+
+    /**
+     * Remove productTaxonomy
+     *
+     * @param \AppBundle\Entity\Product\ProductTaxonomy $productTaxonomy
+     */
+    public function removeProductTaxonomy(\AppBundle\Entity\Product\ProductTaxonomy $productTaxonomy)
+    {
+        $this->productTaxonomies->removeElement($productTaxonomy);
+    }
+
+    /**
+     * Get productTaxonomies
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProductTaxonomies()
+    {
+        return $this->productTaxonomies;
+    }
 }

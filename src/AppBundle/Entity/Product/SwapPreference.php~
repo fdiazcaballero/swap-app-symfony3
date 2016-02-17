@@ -92,4 +92,278 @@ class SwapPreference
 
 
    
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return SwapPreference
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set isFree
+     *
+     * @param boolean $isFree
+     *
+     * @return SwapPreference
+     */
+    public function setIsFree($isFree)
+    {
+        $this->isFree = $isFree;
+
+        return $this;
+    }
+
+    /**
+     * Get isFree
+     *
+     * @return boolean
+     */
+    public function getIsFree()
+    {
+        return $this->isFree;
+    }
+
+    /**
+     * Set isWillingToDeliver
+     *
+     * @param boolean $isWillingToDeliver
+     *
+     * @return SwapPreference
+     */
+    public function setIsWillingToDeliver($isWillingToDeliver)
+    {
+        $this->isWillingToDeliver = $isWillingToDeliver;
+
+        return $this;
+    }
+
+    /**
+     * Get isWillingToDeliver
+     *
+     * @return boolean
+     */
+    public function getIsWillingToDeliver()
+    {
+        return $this->isWillingToDeliver;
+    }
+
+    /**
+     * Set geographicPreference
+     *
+     * @param GeographicSwapPreferenceType $geographicPreference
+     *
+     * @return SwapPreference
+     */
+    public function setGeographicPreference($geographicPreference)
+    {
+        $this->geographicPreference = $geographicPreference;
+
+        return $this;
+    }
+
+    /**
+     * Get geographicPreference
+     *
+     * @return GeographicSwapPreferenceType
+     */
+    public function getGeographicPreference()
+    {
+        return $this->geographicPreference;
+    }
+
+    /**
+     * Set isEmailAlert
+     *
+     * @param boolean $isEmailAlert
+     *
+     * @return SwapPreference
+     */
+    public function setIsEmailAlert($isEmailAlert)
+    {
+        $this->isEmailAlert = $isEmailAlert;
+
+        return $this;
+    }
+
+    /**
+     * Get isEmailAlert
+     *
+     * @return boolean
+     */
+    public function getIsEmailAlert()
+    {
+        return $this->isEmailAlert;
+    }
+
+    /**
+     * Set product
+     *
+     * @param \AppBundle\Entity\Product\Product $product
+     *
+     * @return SwapPreference
+     */
+    public function setProduct(\AppBundle\Entity\Product\Product $product)
+    {
+        $this->product = $product;
+
+        return $this;
+    }
+
+    /**
+     * Get product
+     *
+     * @return \AppBundle\Entity\Product\Product
+     */
+    public function getProduct()
+    {
+        return $this->product;
+    }
+
+    /**
+     * Set categoryPreference
+     *
+     * @param \AppBundle\Entity\Taxonomy\Category $categoryPreference
+     *
+     * @return SwapPreference
+     */
+    public function setCategoryPreference(\AppBundle\Entity\Taxonomy\Category $categoryPreference = null)
+    {
+        $this->categoryPreference = $categoryPreference;
+
+        return $this;
+    }
+
+    /**
+     * Get categoryPreference
+     *
+     * @return \AppBundle\Entity\Taxonomy\Category
+     */
+    public function getCategoryPreference()
+    {
+        return $this->categoryPreference;
+    }
+
+    /**
+     * Set subCategoryPreference
+     *
+     * @param \AppBundle\Entity\Taxonomy\SubCategory $subCategoryPreference
+     *
+     * @return SwapPreference
+     */
+    public function setSubCategoryPreference(\AppBundle\Entity\Taxonomy\SubCategory $subCategoryPreference = null)
+    {
+        $this->subCategoryPreference = $subCategoryPreference;
+
+        return $this;
+    }
+
+    /**
+     * Get subCategoryPreference
+     *
+     * @return \AppBundle\Entity\Taxonomy\SubCategory
+     */
+    public function getSubCategoryPreference()
+    {
+        return $this->subCategoryPreference;
+    }
+
+    /**
+     * Set subSubCategoryPreference
+     *
+     * @param \AppBundle\Entity\Taxonomy\SubsubCategory $subSubCategoryPreference
+     *
+     * @return SwapPreference
+     */
+    public function setSubSubCategoryPreference(\AppBundle\Entity\Taxonomy\SubsubCategory $subSubCategoryPreference = null)
+    {
+        $this->subSubCategoryPreference = $subSubCategoryPreference;
+
+        return $this;
+    }
+
+    /**
+     * Get subSubCategoryPreference
+     *
+     * @return \AppBundle\Entity\Taxonomy\SubsubCategory
+     */
+    public function getSubSubCategoryPreference()
+    {
+        return $this->subSubCategoryPreference;
+    }
+
+    /**
+     * Set subSubSubCategoryPreference
+     *
+     * @param \AppBundle\Entity\Taxonomy\SubsubsubCategory $subSubSubCategoryPreference
+     *
+     * @return SwapPreference
+     */
+    public function setSubSubSubCategoryPreference(\AppBundle\Entity\Taxonomy\SubsubsubCategory $subSubSubCategoryPreference = null)
+    {
+        $this->subSubSubCategoryPreference = $subSubSubCategoryPreference;
+
+        return $this;
+    }
+
+    /**
+     * Get subSubSubCategoryPreference
+     *
+     * @return \AppBundle\Entity\Taxonomy\SubsubsubCategory
+     */
+    public function getSubSubSubCategoryPreference()
+    {
+        return $this->subSubSubCategoryPreference;
+    }
+
+    /**
+     * Set furtherSubCategoryPreference
+     *
+     * @param \AppBundle\Entity\Taxonomy\FurtherSubCategory $furtherSubCategoryPreference
+     *
+     * @return SwapPreference
+     */
+    public function setFurtherSubCategoryPreference(\AppBundle\Entity\Taxonomy\FurtherSubCategory $furtherSubCategoryPreference = null)
+    {
+        $this->furtherSubCategoryPreference = $furtherSubCategoryPreference;
+
+        return $this;
+    }
+
+    /**
+     * Get furtherSubCategoryPreference
+     *
+     * @return \AppBundle\Entity\Taxonomy\FurtherSubCategory
+     */
+    public function getFurtherSubCategoryPreference()
+    {
+        return $this->furtherSubCategoryPreference;
+    }
 }
