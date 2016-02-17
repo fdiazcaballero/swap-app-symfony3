@@ -27,6 +27,11 @@ class FurtherSubCategory
      * @ORM\JoinColumn(name="parent_subsubsub_category_id", nullable=false, referencedColumnName="id")
      */
     private $parentSubSubSubCategory;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="FurtherSubCategory2", mappedBy="parentFurtherSubCategory")
+     */
+    private $furtherSubCategories2;
 
     /**
      * @var string

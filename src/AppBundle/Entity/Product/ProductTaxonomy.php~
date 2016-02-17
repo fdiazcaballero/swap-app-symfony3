@@ -57,6 +57,12 @@ class ProductTaxonomy
      */
     private $furtherSubCategory;
     
+    /**
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Taxonomy\FurtherSubCategory2", inversedBy="productTaxonomies")
+     * @ORM\JoinColumn(name="further_sub_category2_id", nullable=true, referencedColumnName="id")
+     */
+    private $furtherSubCategory2;
+    
     public function __construct()
     {
         $this->products = new ArrayCollection();

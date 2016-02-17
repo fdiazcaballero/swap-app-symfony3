@@ -20,6 +20,41 @@ class FurtherSubCategory2
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="FurtherSubCategory", inversedBy="furtherSubCategories2")
+     * @ORM\JoinColumn(name="parent_further_sub_category_id", nullable=false, referencedColumnName="id")
+     */
+    private $parentFurtherSubCategory;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=63, unique=true)
+     */
+    private $name;
+    
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+        
+    /**
+     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Product\ProductTaxonomy", mappedBy="furtherSubCategory2")
+     */
+    private $productTaxonomies;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean", options={"default":1})
+     */
+    private $isActive;
+    
+     public function __construct()
+    {
+        $this->productTaxonomies = new ArrayCollection();     
+    }
 
 
     /**

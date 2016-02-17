@@ -27,6 +27,11 @@ class FurtherSubCategory
      * @ORM\JoinColumn(name="parent_subsubsub_category_id", nullable=false, referencedColumnName="id")
      */
     private $parentSubSubSubCategory;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="FurtherSubCategory2", mappedBy="parentFurtherSubCategory")
+     */
+    private $furtherSubCategories2;
 
     /**
      * @var string
@@ -228,5 +233,39 @@ class FurtherSubCategory
     public function getProductTaxonomies()
     {
         return $this->productTaxonomies;
+    }
+
+    /**
+     * Add furtherSubCategories2
+     *
+     * @param \AppBundle\Entity\Taxonomy\FurtherSubCategory2 $furtherSubCategories2
+     *
+     * @return FurtherSubCategory
+     */
+    public function addFurtherSubCategories2(\AppBundle\Entity\Taxonomy\FurtherSubCategory2 $furtherSubCategories2)
+    {
+        $this->furtherSubCategories2[] = $furtherSubCategories2;
+
+        return $this;
+    }
+
+    /**
+     * Remove furtherSubCategories2
+     *
+     * @param \AppBundle\Entity\Taxonomy\FurtherSubCategory2 $furtherSubCategories2
+     */
+    public function removeFurtherSubCategories2(\AppBundle\Entity\Taxonomy\FurtherSubCategory2 $furtherSubCategories2)
+    {
+        $this->furtherSubCategories2->removeElement($furtherSubCategories2);
+    }
+
+    /**
+     * Get furtherSubCategories2
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFurtherSubCategories2()
+    {
+        return $this->furtherSubCategories2;
     }
 }
