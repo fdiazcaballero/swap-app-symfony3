@@ -35,11 +35,6 @@ class Product
      */
     private $description;
     
-    /**
-     * @ORM\Column(type="string", length=63)
-     */
-    private $condition;
-    
      /**
      * @ORM\Column(type="smallint", nullable=true)
      */
@@ -79,6 +74,11 @@ class Product
      */
     private $productLocation;
     
+    /**
+     * @ORM\ManyToOne(targetEntity="ProductCondition", inversedBy="products")
+     * @ORM\JoinColumn(name="product_condition_id", nullable=false, referencedColumnName="id")
+     */
+    private $productCondition;    
    
 
     /**
@@ -137,30 +137,6 @@ class Product
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set condition
-     *
-     * @param string $condition
-     *
-     * @return Product
-     */
-    public function setCondition($condition)
-    {
-        $this->condition = $condition;
-
-        return $this;
-    }
-
-    /**
-     * Get condition
-     *
-     * @return string
-     */
-    public function getCondition()
-    {
-        return $this->condition;
     }
 
     /**
@@ -353,5 +329,29 @@ class Product
     public function getProductLocation()
     {
         return $this->productLocation;
+    }
+
+    /**
+     * Set productCondition
+     *
+     * @param \AppBundle\Entity\Product\ProductCondition $productCondition
+     *
+     * @return Product
+     */
+    public function setProductCondition(\AppBundle\Entity\Product\ProductCondition $productCondition)
+    {
+        $this->productCondition = $productCondition;
+
+        return $this;
+    }
+
+    /**
+     * Get productCondition
+     *
+     * @return \AppBundle\Entity\Product\ProductCondition
+     */
+    public function getProductCondition()
+    {
+        return $this->productCondition;
     }
 }
