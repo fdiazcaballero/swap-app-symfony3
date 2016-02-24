@@ -6,14 +6,27 @@ namespace AppBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use AppBundle\Entity\Product\ProductCondition;
+use AppBundle\Entity\Product\ProductLocation;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+//use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class ProductType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        //http://symfony.com/doc/current/reference/forms/types/entity.html
         $builder
             ->add('name')
-            ->add('description')
+            ->add('description')            
+            ->add('productCondition', EntityType::class, array(
+                'choice_label' => 'name',
+                'class' => 'AppBundle:Product\ProductCondition',
+                'expanded' => false,
+                'multiple' => false,
+                'label' => 'Condition'
+            ))
+            ->add('productLocation', ProductLocationType::class)
             ->add('save', SubmitType::class)
         ;
     }

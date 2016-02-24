@@ -35,7 +35,7 @@ class ProductLocation
         
      /**
      * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Location\State", inversedBy="productLocations")
-     * @ORM\JoinColumn(name="state_id", nullable=false, referencedColumnName="id")
+     * @ORM\JoinColumn(name="state_id", nullable=true, referencedColumnName="id")
      */
     private $state;
     

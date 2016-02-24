@@ -35,7 +35,7 @@ class SwapPreference
     private $product;
     
     /**
-     * @ORM\Column(type="boolean", options={"default":0})
+     * @ORM\Column(type="boolean", nullable=false, options={"default":0})
      */
     private $isFree;
     
@@ -78,7 +78,7 @@ class SwapPreference
      * Note, that type of a field should be same as you set in Doctrine config
      * (in this case it is GeographicSwapPreferenceType)
      *
-     * @ORM\Column(name="geographic_preference", type="GeographicSwapPreferenceType", nullable=false, options={"default":"ST"})
+     * @ORM\Column(name="geographic_preference", type="GeographicSwapPreferenceType", nullable=true, options={"default":"ST"})
      * @DoctrineAssert\Enum(entity="AppBundle\DBAL\Types\GeographicSwapPreferenceType")     
      */
     private $geographicPreference;

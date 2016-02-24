@@ -35,7 +35,7 @@ class ProductTaxonomy
         
      /**
      * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Taxonomy\SubCategory", inversedBy="productTaxonomies")
-     * @ORM\JoinColumn(name="sub_category_id", nullable=false, referencedColumnName="id")
+     * @ORM\JoinColumn(name="sub_category_id", nullable=true, referencedColumnName="id")
      */
     private $subCategory;
     

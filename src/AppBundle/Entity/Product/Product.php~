@@ -3,6 +3,7 @@
 namespace AppBundle\Entity\Product;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -21,7 +22,7 @@ class Product
     
      /**
      * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\User", inversedBy="products")
-     * @ORM\JoinColumn(name="user_id", nullable=false, referencedColumnName="id")
+     * @ORM\JoinColumn(name="user_id", nullable=true, referencedColumnName="id")
      */
     private $user;
 
@@ -49,34 +50,41 @@ class Product
      * @ORM\Column(type="datetime")
      */
     private $createdAt;   
-
     
     /**
-     * @ORM\Column(type="boolean", options={"default":0})
+     * @ORM\Column(type="boolean", options={"default":0}, nullable=true)
      */
     private $hasPhoto;
     
     /**
      * @ORM\OneToOne(targetEntity="SwapPreference")
      * @ORM\JoinColumn(name="swap_preference_id", nullable=true, referencedColumnName="id")
+     * @Assert\Type(type="AppBundle\Entity\Product\SwawpPreference")
+     * @Assert\Valid()
      */
     private $swapPreference;
     
      /**
      * @ORM\ManyToOne(targetEntity="ProductTaxonomy", inversedBy="products")
-     * @ORM\JoinColumn(name="product_taxonomy_id", nullable=false, referencedColumnName="id")
+     * @ORM\JoinColumn(name="product_taxonomy_id", nullable=true, referencedColumnName="id")
+     * @Assert\Type(type="AppBundle\Entity\Product\ProductTaxonomy")
+     * @Assert\Valid()
      */
     private $productTaxonomy;
     
     /**
      * @ORM\ManyToOne(targetEntity="ProductLocation", inversedBy="products")
      * @ORM\JoinColumn(name="product_location_id", nullable=false, referencedColumnName="id")
+     * @Assert\Type(type="AppBundle\Entity\Product\ProductLocation")
+     * @Assert\Valid()
      */
     private $productLocation;
     
     /**
      * @ORM\ManyToOne(targetEntity="ProductCondition", inversedBy="products")
      * @ORM\JoinColumn(name="product_condition_id", nullable=false, referencedColumnName="id")
+     * @Assert\Type(type="AppBundle\Entity\Product\ProductCondition")
+     * @Assert\Valid()
      */
     private $productCondition;    
    
@@ -199,6 +207,14 @@ class Product
         $this->createdAt = $createdAt;
 
         return $this;
+    }
+    
+    /**
+    * @ORM\PrePersist
+    */
+    public function setCreatedAtValue()
+    {
+        $this->createdAt = new \DateTime();
     }
 
     /**
