@@ -1,5 +1,13 @@
 {# app/Resources/views/default/newProduct.html.twig #}
+{% stylesheets '@jquery_ui_css' filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+{% endstylesheets %}
+
 {{ form_start(form) }}
 {{ form_widget(form) }}
 {{ form_end(form) }}
+
+{% javascripts '@jquery_and_ui' %}
+    <script src="{{ asset_url }}"></script>
+{% endjavascripts %}
 

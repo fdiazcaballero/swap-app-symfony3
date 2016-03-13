@@ -22,7 +22,7 @@ class Product
     
      /**
      * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\User", inversedBy="products")
-     * @ORM\JoinColumn(name="user_id", nullable=true, referencedColumnName="id")
+     * @ORM\JoinColumn(name="user_id", nullable=false, referencedColumnName="id")
      */
     private $user;
 

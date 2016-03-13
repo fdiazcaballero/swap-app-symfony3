@@ -106,3 +106,19 @@ doctrine_migrations:
     namespace: Application\Migrations
     table_name: migration_versions
     name: Application Migrations
+    
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+        cssrewrite: ~
+    assets:
+        jquery_and_ui:
+            inputs:
+                - '@AppBundle/Resources/public/js/thirdparty/jquery-2.2.1.js'
+                - '@AppBundle/Resources/public/js/thirdparty/jquery-ui.js'
+        jquery_ui_css:
+            inputs:
+                - '@AppBundle/Resources/public/css/thirdparty/jquery-ui.css'
+                - '@AppBundle/Resources/public/css/thirdparty/jquery-ui.theme.css'
+                - '@AppBundle/Resources/public/css/thirdparty/jquery-ui.structure.css'
