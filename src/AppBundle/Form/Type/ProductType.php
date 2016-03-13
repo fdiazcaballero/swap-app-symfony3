@@ -9,6 +9,8 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use AppBundle\Entity\Product\ProductCondition;
 use AppBundle\Entity\Product\ProductLocation;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 //use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class ProductType extends AbstractType
@@ -26,6 +28,11 @@ class ProductType extends AbstractType
                 'multiple' => false,
                 'label' => 'Condition'
             ))
+            ->add('imageFile', VichImageType::class, array(
+            'required'      => false,
+            'allow_delete'  => true, // not mandatory, default is true
+            'download_link' => true, // not mandatory, default is true
+            ))   
             ->add('productLocation', ProductLocationType::class)
             ->add('save', SubmitType::class)
         ;

@@ -16,7 +16,7 @@ class ProductController extends Controller
 {
     
     /**
-     * @Route("/new-product", name="new_product")
+     * @Route("/product/new", name="new_product")
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      */
     public function newProductAction(Request $request)
@@ -38,6 +38,20 @@ class ProductController extends Controller
         
 
         if ($form->isValid()) {
+            
+//            // $file stores the uploaded PDF file
+//            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+//            $file = $product->getPicture();
+//            // Generate a unique name for the file before saving it
+//            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+//            // Move the file to the directory where pictures are stored
+//            $brochuresDir = $this->container->getParameter('kernel.root_dir').'/../web/uploads/pictures';
+//            $file->move($brochuresDir, $fileName);
+//
+//            // Update the 'brochure' property to store the PDF file name
+//            // instead of its contents
+//            $product->setBrochure($fileName);            
+            
             $em = $this->getDoctrine()->getManager();
             $em->persist($product);
             $em->persist($productLocation);

@@ -39,6 +39,9 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form_themes:
+        # other form themes
+        - 'VichUploaderBundle:Form:fields.html.twig'
 
 # Doctrine Configuration       
 doctrine:
@@ -122,3 +125,25 @@ assetic:
                 - '@AppBundle/Resources/public/css/thirdparty/jquery-ui.css'
                 - '@AppBundle/Resources/public/css/thirdparty/jquery-ui.theme.css'
                 - '@AppBundle/Resources/public/css/thirdparty/jquery-ui.structure.css'
+vich_uploader:
+    default_filename_attribute_suffix:  _name
+    db_driver:            orm
+    storage:              file_system
+    twig:                 true
+    metadata:
+        cache:                file
+        file_cache:
+            dir:              %kernel.cache_dir%/vich_uploader
+        auto_detection:       true
+
+    mappings:
+        # Prototype
+        product_image:
+            uri_prefix:           /images/products
+            upload_destination:   %kernel.root_dir%/../web/images/products
+            namer:                vich_uploader.namer_uniqid
+            directory_namer:      ~
+            delete_on_remove:     true
+            delete_on_update:     true
+            inject_on_load:       false
+            db_driver:            orm

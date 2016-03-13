@@ -26,7 +26,8 @@
         "fresh/doctrine-enum-bundle": "v4.0",
         "symfony/assetic-bundle": "^2.8",
         "leafo/scssphp": "^0.6.3",
-        "patchwork/jsqueeze": "~1.0"
+        "patchwork/jsqueeze": "~1.0",
+        "vich/uploader-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
