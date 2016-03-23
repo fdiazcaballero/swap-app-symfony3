@@ -7,7 +7,12 @@
 {{ form_widget(form) }}
 {{ form_end(form) }}
 
-{% javascripts '@jquery_and_ui' %}
+{% block javascripts %}
+{% javascripts 
+    '@jquery_and_ui' 
+    '@AppBundle/Resources/public/js/Product/new_product.js'
+%}
     <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
+{% endblock %}
 

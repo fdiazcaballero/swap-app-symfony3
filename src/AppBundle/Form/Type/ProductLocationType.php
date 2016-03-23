@@ -22,6 +22,17 @@ class ProductLocationType extends AbstractType
                 'expanded' => false,
                 'multiple' => false,
                 'label' => 'Country'
+            ))
+            ->add('state', EntityType::class, array(
+                'choice_label' => 'name',
+                'class' => 'AppBundle:Location\State',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->where('1=1');
+                },
+                'expanded' => false,
+                'multiple' => false,
+                'label' => 'County'
             ));
     }
 
