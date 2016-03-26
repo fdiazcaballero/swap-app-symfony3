@@ -33,7 +33,10 @@ class ProductController extends Controller
         $productLocation = new ProductLocation();
         $product->setProductLocation($productLocation);
         $product->setUser($user);
-        $form = $this->createForm(ProductType::class, $product);
+        $form = $this->createForm(ProductType::class, $product, array(
+            'action' => $this->generateUrl('new_product'),
+            'method' => 'GET',
+        ));
         $form->handleRequest($request);
         
 
@@ -58,9 +61,13 @@ class ProductController extends Controller
             $em->flush();
         }
         
-        return $this->render('default/newProduct.html.twig', array(
-            'form' => $form->createView(),
-        ));       
+//        if($request->isXmlHttpRequest()) {
+//            return json_encode($form->createView());
+//        } else {        
+            return $this->render('default/newProduct.html.twig', array(
+                'form' => $form->createView(),
+            )); 
+//        }
     }
 }
 
