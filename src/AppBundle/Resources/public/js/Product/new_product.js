@@ -27,9 +27,10 @@ $country.change(function() {
           $(html).find('#product_productLocation_state')
         );
         // Position field now displays the appropriate positions.
-      },
-      error: function(err){
-          alert("aaa");
       }
+//      ,
+//      error: function(err){
+//          alert("aaa");
+//      }
   });
 });

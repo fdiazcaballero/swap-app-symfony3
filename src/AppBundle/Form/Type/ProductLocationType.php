@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
+use AppBundle\Entity\Location\Country;
 
 class ProductLocationType extends AbstractType
 {
@@ -25,7 +26,7 @@ class ProductLocationType extends AbstractType
                 'expanded' => false,
                 'multiple' => false,
                 'label' => 'Country',
-                'placeholder' => '',
+                'placeholder' => '--None--',
             ));
             ;
             
@@ -35,7 +36,7 @@ class ProductLocationType extends AbstractType
             $form->add('state', EntityType::class, array(
                 'choice_label' => 'name',
                 'class'       => 'AppBundle:Location\State',
-                'placeholder' => '',
+                'placeholder' => '--None--',
                 'choices'     => $states,
                 'label' => 'County',
             ));
