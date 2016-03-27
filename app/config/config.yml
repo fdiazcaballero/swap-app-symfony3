@@ -118,13 +118,14 @@ assetic:
     assets:
         jquery_and_ui:
             inputs:
-                - '@AppBundle/Resources/public/js/thirdparty/jquery-2.2.1.js'
-                - '@AppBundle/Resources/public/js/thirdparty/jquery-ui.js'
+                - 'js/thirdparty/jquery-2.2.1.js'
+                - 'js/thirdparty/jquery-ui.js'
         jquery_ui_css:
             inputs:
-                - '@AppBundle/Resources/public/css/thirdparty/jquery-ui.css'
-                - '@AppBundle/Resources/public/css/thirdparty/jquery-ui.theme.css'
-                - '@AppBundle/Resources/public/css/thirdparty/jquery-ui.structure.css'
+                - 'css/thirdparty/jquery-ui.css'
+                - 'css/thirdparty/jquery-ui.theme.css'
+                - 'css/thirdparty/jquery-ui.structure.css'
+                
 vich_uploader:
     default_filename_attribute_suffix:  _name
     db_driver:            orm

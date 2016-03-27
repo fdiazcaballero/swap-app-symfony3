@@ -26,7 +26,7 @@ class ProductLocationType extends AbstractType
                 'expanded' => false,
                 'multiple' => false,
                 'label' => 'Country',
-                'placeholder' => '--None--',
+                'placeholder' => '  --    None    --  ',
             ));
             ;
             
@@ -36,9 +36,10 @@ class ProductLocationType extends AbstractType
             $form->add('state', EntityType::class, array(
                 'choice_label' => 'name',
                 'class'       => 'AppBundle:Location\State',
-                'placeholder' => '--None--',
+                'placeholder' => '  --    None    --  ',
                 'choices'     => $states,
                 'label' => 'County',
+                'required' => false,
             ));
         };
         
