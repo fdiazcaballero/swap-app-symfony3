@@ -42,20 +42,7 @@ class ProductLocationType extends AbstractType
                 'label' => 'County',
                 'required' => false,
             ));
-        };
-        
-//        $formModifierState = function (FormInterface $form, State $state = null) {
-//            $cities = null === $state ? array() : $state->getCities();
-//
-//            $form->add('city', EntityType::class, array(
-//                'choice_label' => 'name',
-//                'class'       => 'AppBundle:Location\City',
-//                'placeholder' => '  --    None    --  ',
-//                'choices'     => $cities,
-//                'label' => 'City',
-//                'required' => false,
-//            ));
-//        };
+        };        
         
         $builder->addEventListener(
             FormEvents::PRE_SET_DATA,
@@ -65,15 +52,6 @@ class ProductLocationType extends AbstractType
 
                 $formModifierCountry($event->getForm(), $data->getCountry());
             }
-//        )
-//        ->addEventListener(
-//            FormEvents::PRE_SET_DATA,
-//            function (FormEvent $event) use ($formModifierState) {
-//                // this would be your entity, i.e. SportMeetup
-//                $data = $event->getData();
-//
-//                $formModifierState($event->getForm(), $data->getState());
-//            }
         );
         
         $builder->get('country')->addEventListener(
@@ -87,21 +65,7 @@ class ProductLocationType extends AbstractType
                 // the parent to the callback functions!
                 $formModifierCountry($event->getForm()->getParent(), $country);
             }
-        );
-        
-//        $builder->get('state')->addEventListener(
-//            FormEvents::POST_SUBMIT,
-//            function (FormEvent $event) use ($formModifierState) {
-//                // It's important here to fetch $event->getForm()->getData(), as
-//                // $event->getData() will get you the client data (that is, the ID)
-//                $state = $event->getForm()->getData();
-//
-//                // since we've added the listener to the child, we'll have to pass on
-//                // the parent to the callback functions!
-//                $formModifierState($event->getForm()->getParent(), $state);
-//            }
-//        );
-            
+        );           
 
     }   
 

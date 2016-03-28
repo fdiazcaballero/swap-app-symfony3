@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use AppBundle\Entity\Product\ProductCondition;
 use AppBundle\Entity\Product\ProductLocation;
+use AppBundle\Entity\Product\ProductTaxonomy;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -34,6 +35,7 @@ class ProductType extends AbstractType
             'download_link' => true, // not mandatory, default is true
             ))   
             ->add('productLocation', ProductLocationType::class)
+            ->add('productTaxonomy', ProductTaxonomyType::class)
             ->add('save', SubmitType::class)
         ;
     }

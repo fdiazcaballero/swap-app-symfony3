@@ -69,7 +69,7 @@ class Product
     
      /**
      * @ORM\ManyToOne(targetEntity="ProductTaxonomy", inversedBy="products")
-     * @ORM\JoinColumn(name="product_taxonomy_id", nullable=true, referencedColumnName="id")
+     * @ORM\JoinColumn(name="product_taxonomy_id", nullable=false, referencedColumnName="id")
      * @Assert\Type(type="AppBundle\Entity\Product\ProductTaxonomy")
      * @Assert\Valid()
      */

@@ -10,7 +10,9 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Form\Type\ProductType;
 use AppBundle\Entity\Product\Product;
 use AppBundle\Entity\Product\ProductLocation;
+use AppBundle\Entity\Product\ProductTaxonomy;
 use AppBundle\Entity\User;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ProductController extends Controller
 {
@@ -31,7 +33,9 @@ class ProductController extends Controller
         $user = $this->getUser();
         $product = new Product();
         $productLocation = new ProductLocation();
+        $productTaxonomy = new ProductTaxonomy();
         $product->setProductLocation($productLocation);
+        $product->setProductTaxonomy($productTaxonomy);
         $product->setUser($user);
         $form = $this->createForm(ProductType::class, $product, array(
             'action' => $this->generateUrl('new_product'),
@@ -44,6 +48,7 @@ class ProductController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($product);
             $em->persist($productLocation);
+            $em->persist($productTaxonomy);
             $em->flush();
         }
         
@@ -54,6 +59,23 @@ class ProductController extends Controller
                 'form' => $form->createView(),
             )); 
 //        }
+    }
+    
+    /**
+     * @Route("/product/ajax/get_sub_categories_form", name="get_sub_categories_form")
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     */
+    public function productAjaxGetSubCategoriesFormAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $subcategories = $em->getRepository('AppBundle:Taxonomy\SubCategory')
+            ->findByParentId($_POST['category']);
+        
+        if ($request->isXMLHttpRequest()) {         
+            return new JsonResponse(array('data' => $subcategories , 'is_succes' => true));
+        }
+
+        return new Response('This is not ajax!', 400);
     }
 }
 

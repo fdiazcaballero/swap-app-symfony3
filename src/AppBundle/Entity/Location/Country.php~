@@ -154,7 +154,7 @@ class Country
      *
      * @return Country
      */
-    public function addState(\AppBundle\Entity\State $state)
+    public function addState(\AppBundle\Entity\Location\State $state)
     {
         $this->states[] = $state;
 
@@ -164,9 +164,9 @@ class Country
     /**
      * Remove state
      *
-     * @param \AppBundle\Entity\State $state
+     * @param \AppBundle\Entity\Location\State $state
      */
-    public function removeState(\AppBundle\Entity\State $state)
+    public function removeState(\AppBundle\Entity\Location\State $state)
     {
         $this->states->removeElement($state);
     }
@@ -184,11 +184,11 @@ class Country
     /**
      * Add city
      *
-     * @param \AppBundle\Entity\City $city
+     * @param \AppBundle\Entity\Location\City $city
      *
      * @return Country
      */
-    public function addCity(\AppBundle\Entity\City $city)
+    public function addCity(\AppBundle\Entity\Location\City $city)
     {
         $this->cities[] = $city;
 
@@ -198,9 +198,9 @@ class Country
     /**
      * Remove city
      *
-     * @param \AppBundle\Entity\City $city
+     * @param \AppBundle\Entity\Location\City $city
      */
-    public function removeCity(\AppBundle\Entity\City $city)
+    public function removeCity(\AppBundle\Entity\Location\City $city)
     {
         $this->cities->removeElement($city);
     }
