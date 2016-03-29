@@ -69,10 +69,10 @@ class ProductController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $subcategories = $em->getRepository('AppBundle:Taxonomy\SubCategory')
-            ->findByParentId($_POST['category']);
+            ->findByParentId($request->request->get('parent', '1'));
         
         if ($request->isXMLHttpRequest()) {         
-            return new JsonResponse(array('data' => $subcategories , 'is_succes' => true));
+            return new JsonResponse(array('data' => $subcategories , 'is_success' => true));
         }
 
         return new Response('This is not ajax!', 400);

@@ -1,15 +1,22 @@
 var $country = $('#product_productLocation_country');
 var $state = $('#product_productLocation_state');
-var $category = $('#product_productTaxonomy_category');
-var $sub_category = $('#product_productTaxonomy_subCategory');
+var category_id = '#product_productTaxonomy_category';
+var sub_category_id = '#product_productTaxonomy_subCategory';
+var sub_category_url_action="/product/ajax/get_sub_categories_form";
 
-$state.prop('disabled', 'disabled');
+var sub_sub_category_id="#product_productTaxonomy_subSubCategory";
+var sub_sub_category_url_action="/taxonomy/ajax/get_sub_sub_categories_form";
+
+$state.attr('disabled', 'disabled');
+$(sub_category_id).attr('disabled', 'disabled');
+$(sub_sub_category_id).attr('disabled', 'disabled');
 
 $country.change(function() {
-    update_form($country, $state,'#product_productLocation_state');
+    update_form2($country, $state,'#product_productLocation_state');
 });
 
-function update_form($element_parent, $element_child, child_id){
+
+function update_form2($element_parent, $element_child, child_id){
     if($element_parent.val()!=""){
         $element_child.removeProp('disabled');
     }
@@ -41,19 +48,35 @@ function update_form($element_parent, $element_child, child_id){
   });
 }
 
-$category.change(function(){
-    if($('#product_productTaxonomy_category').val()!=""){
-        $('#product_productTaxonomy_subCategory');
+$(category_id).change(function(){    
+    update_form(category_id, sub_category_id, sub_category_url_action);
+});
+
+$(sub_category_id).change(function(){    
+    update_form(sub_category_id, sub_sub_category_id, sub_sub_category_url_action);
+});
+
+function update_form(parent_id, child_id, url_action){    
+    if($(parent_id).val()!=""){
+        $(child_id).attr('disabled', 'disabled');
         $.ajax({
-          url : "/product/ajax/get_sub_categories_form",
+          url : url_action,
           type: 'POST',
-          data : {category: $category.val()},
+          data : {parent: $(parent_id).val()},
           success: function(response) {
-//                if(response.is_success){
-                    $('#product_productTaxonomy_subCategory').empty();
-                    var options=create_select_options(response.data);
-                    $('#product_productTaxonomy_subCategory').append(options);
-//                }
+                if(response.is_success){
+                    if(response.data && response.data.length>0){
+                        $(child_id).empty();
+                        var options=create_select_options(response.data);
+                        $(child_id).append(options);
+                        $(child_id).removeAttr("disabled")
+                    }
+                    else{
+                        $(child_id).empty();
+                        $(child_id).append("<option value=''> --  None  -- </option>");
+                        $(child_id).attr('disabled', 'disabled');
+                    }                    
+                }
           }
           ,
           error: function(err){
@@ -62,11 +85,11 @@ $category.change(function(){
       });
     }
     else{
-        $('#product_productTaxonomy_subCategory').empty();
-        $('#product_productTaxonomy_subCategory').append("<option value=''> --  None  -- </option>");
+        $(child_id).empty();
+        $(child_id).append("<option value=''> --  None  -- </option>");
+        $(child_id).attr('disabled', 'disabled');
     }
-    
-});
+}
 
 function create_select_options(array){
     var options ="<option value=''> --  None  -- </option>";

@@ -34,13 +34,22 @@ class ProductTaxonomyType extends AbstractType
             $builder->add('subCategory', EntityType::class, array(
                 'choice_label' => 'name',
                 'class' => 'AppBundle:Taxonomy\SubCategory',
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('c')
-                        ->where('c.isActive=1');
-                },
+                'choices' => array(),
                 'expanded' => false,
                 'multiple' => false,
-                'label' => 'Sub Category',
+                'label' => 'Sub-CatI',
+                'placeholder' => '  --    None    --  ',
+                'required' => false,
+            ));
+            ;
+            
+            $builder->add('subSubCategory', EntityType::class, array(
+                'choice_label' => 'name',
+                'class' => 'AppBundle:Taxonomy\SubsubCategory',
+                'choices' => array(),
+                'expanded' => false,
+                'multiple' => false,
+                'label' => 'Sub-CatII',
                 'placeholder' => '  --    None    --  ',
                 'required' => false,
             ));
