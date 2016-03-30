@@ -9,10 +9,14 @@ var sub_sub_category_url_action="/taxonomy/ajax/get_sub_sub_categories_form";
 
 if ($country.val()=="")
     $state.attr('disabled', 'disabled');
-if ($(category_id).val()=="")
-    $(sub_category_id).attr('disabled', 'disabled');
-if ($(sub_category_id).val()=="")
-    $(sub_sub_category_id).attr('disabled', 'disabled');
+if ($(category_id).val()==""){
+    hide_next_siblings($(category_id));
+//    disable_next_siblings($(category_id));
+}
+else if ($(sub_category_id).val()==""){
+    hide_next_siblings($(sub_category_id));
+//    disable_next_siblings($(sub_category_id));
+}
 
 $country.change(function() {
     update_form2($country, $state,'#product_productLocation_state');
@@ -59,9 +63,10 @@ $(sub_category_id).change(function(){
     update_form(sub_category_id, sub_sub_category_id, sub_sub_category_url_action);
 });
 
-function update_form(parent_id, child_id, url_action){    
+function update_form(parent_id, child_id, url_action){ 
+//    disable_next_siblings($(parent_id));
+    hide_next_siblings($(parent_id));
     if($(parent_id).val()!=""){
-        $(child_id).attr('disabled', 'disabled');
         $.ajax({
           url : url_action,
           type: 'POST',
@@ -72,12 +77,13 @@ function update_form(parent_id, child_id, url_action){
                         $(child_id).empty();
                         var options=create_select_options(response.data);
                         $(child_id).append(options);
-                        $(child_id).removeAttr("disabled")
+//                        $(child_id).removeAttr("disabled");
+                        $(child_id).parent('div').parent('div').show();
+                        
                     }
                     else{
-                        $(child_id).empty();
-                        $(child_id).append("<option value=''> --  None  -- </option>");
-                        $(child_id).attr('disabled', 'disabled');
+//                        disable_next_siblings($(parent_id));
+                          hide_next_siblings($(parent_id));
                     }                    
                 }
           }
@@ -87,11 +93,35 @@ function update_form(parent_id, child_id, url_action){
           }
       });
     }
-    else{
-        $(child_id).empty();
-        $(child_id).append("<option value=''> --  None  -- </option>");
-        $(child_id).attr('disabled', 'disabled');
-    }
+}
+
+function disable_option(select_element){
+    select_element.empty();
+    select_element.append("<option value=''> --  None  -- </option>");
+    select_element.attr('disabled', 'disabled');
+    
+    return false;
+}
+
+function disable_next_siblings(select_element){
+    select_element.parent('div').parent('div').nextAll().each(function(){
+        disable_option($(this).find('select'));
+    })
+    return false;
+}
+
+function hide_form_row(row){
+    row.find('select').empty();
+    row.find('select').append("<option value=''> --  None  -- </option>");
+    row.hide();    
+    return false;
+}
+
+function hide_next_siblings(select_element){
+    select_element.parent('div').parent('div').nextAll().each(function(){
+        hide_form_row($(this));
+    })
+    return false;
 }
 
 function create_select_options(array){
