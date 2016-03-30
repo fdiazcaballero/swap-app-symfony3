@@ -1,28 +1,13 @@
-Symfony Standard Edition
-========================
+## Synopsis
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony
-application that you can use as the skeleton for your new applications.
-
-For details on how to download and get started with Symfony, see the
+This project is a web application that allows to register as an user and the exchange of products with other users.  
+It allows to categorize a product within many taxonomy levels and to choose the swapping preferences (preferred categori, location, etc) in order to look for possible matches for the swap.  
+This project uses the Symfony3 Standard Edition, for details on how to download and get started with Symfony, see the
 [Installation][1] chapter of the Symfony Documentation.
 
-What's inside?
---------------
+## Bundles used
 
-The Symfony Standard Edition is configured with the following defaults:
-
-  * An AppBundle you can use to start coding;
-
-  * Twig as the only configured template engine;
-
-  * Doctrine ORM/DBAL;
-
-  * Swiftmailer;
-
-  * Annotations enabled for everything.
-
-It comes pre-configured with the following bundles:
+This project uses the following bundles:
 
   * **FrameworkBundle** - The core Symfony framework bundle
 
@@ -51,12 +36,19 @@ It comes pre-configured with the following bundles:
     capabilities
 
   * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
-    integration
+    integration  
 
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
-
-Enjoy!
+  *	**FOSUserBundle** 
+  
+  * **DoctrineMigrationsBundle**
+  
+  * **FreshDoctrineEnumBundle**
+  
+  * **AsseticBundle**
+  
+  * **VichUploaderBundle**
+  
+  * **FOSJsRoutingBundle**
 
 [1]:  https://symfony.com/doc/3.0/book/installation.html
 [6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
@@ -66,3 +58,15 @@ Enjoy!
 [10]: https://symfony.com/doc/3.0/cookbook/email.html
 [11]: https://symfony.com/doc/3.0/cookbook/logging/monolog.html
 [13]: https://symfony.com/doc/3.0/bundles/SensioGeneratorBundle/index.html
+
+## API Reference
+
+[Symfony Framework](http://symfony.com/)  
+
+## Contributors
+
+[Fernando Diaz Caballero] (fdiazcaballero@gmail.com)  
+
+## License
+
+GNU GENERAL PUBLIC LICENSE
