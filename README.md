@@ -65,7 +65,7 @@ This project uses the following bundles:
 
 ## Contributors
 
-[Fernando Diaz Caballero] (fdiazcaballero@gmail.com)  
+Fernando Diaz Caballero fdiazcaballero@gmail.com  
 
 ## License
 
