@@ -40,7 +40,7 @@ class ProductTaxonomyType extends AbstractType
                 },
                 'expanded' => false,
                 'multiple' => false,
-                'label' => 'Sub-CatI',
+                'label' => 'SubCatI',
                 'placeholder' => '  --    None    --  ',
                 'required' => false,
             ));
@@ -55,7 +55,37 @@ class ProductTaxonomyType extends AbstractType
                 },
                 'expanded' => false,
                 'multiple' => false,
-                'label' => 'Sub-CatII',
+                'label' => 'SubCatII',
+                'placeholder' => '  --    None    --  ',
+                'required' => false,
+            ));
+            ;
+            
+            $builder->add('subSubSubCategory', EntityType::class, array(
+                'choice_label' => 'name',
+                'class' => 'AppBundle:Taxonomy\SubsubsubCategory',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->where('c.isActive=1');
+                },
+                'expanded' => false,
+                'multiple' => false,
+                'label' => 'SubCatIII',
+                'placeholder' => '  --    None    --  ',
+                'required' => false,
+            ));
+            ;
+            
+            $builder->add('furtherSubCategory', EntityType::class, array(
+                'choice_label' => 'name',
+                'class' => 'AppBundle:Taxonomy\FurtherSubCategory',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->where('c.isActive=1');
+                },
+                'expanded' => false,
+                'multiple' => false,
+                'label' => 'SubCatIV',
                 'placeholder' => '  --    None    --  ',
                 'required' => false,
             ));

@@ -9,5 +9,14 @@ namespace AppBundle\Repository\Taxonomy;
  * repository methods below.
  */
 class FurtherSubCategoryRepository extends \Doctrine\ORM\EntityRepository
-{
+{    
+    public function findByParentId($parent)
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT p.id, p.name FROM AppBundle:Taxonomy\FurtherSubCategory p WHERE p.parentSubSubSubCategory=:parent AND p.isActive=1 ORDER BY p.name ASC'
+            )
+            ->setParameter('parent', $parent)
+            ->getResult();
+    }       
 }

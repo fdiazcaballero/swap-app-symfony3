@@ -1,21 +1,43 @@
 var $country = $('#product_productLocation_country');
 var $state = $('#product_productLocation_state');
-var category_id = '#product_productTaxonomy_category';
-var sub_category_id = '#product_productTaxonomy_subCategory';
-var sub_category_url_action = "/product/ajax/get_sub_categories_form";
-//Routing.generate('get_sub_categories_form');
-var sub_sub_category_id="#product_productTaxonomy_subSubCategory";
-var sub_sub_category_url_action="/taxonomy/ajax/get_sub_sub_categories_form";
+var category = {id:'#product_productTaxonomy_category'};
+var sub_category = { 
+    id: '#product_productTaxonomy_subCategory',
+    url_action: Routing.generate('get_sub_categories_form')
+    };
+    
+var subsub_category = { 
+    id: '#product_productTaxonomy_subSubCategory',
+    url_action: Routing.generate('get_subsub_categories_form')
+    };
+    
+var subsubsub_category = { 
+    id: '#product_productTaxonomy_subSubSubCategory',
+    url_action: Routing.generate('get_subsubsub_categories_form')
+    };
+    
+var furthersub_category = { 
+    id: '#product_productTaxonomy_furtherSubCategory',
+    url_action: Routing.generate('get_furthersub_categories_form')
+    };
 
 if ($country.val()=="")
     $state.attr('disabled', 'disabled');
-if ($(category_id).val()==""){
-    hide_next_siblings($(category_id));
-//    disable_next_siblings($(category_id));
+if ($(category.id).val()==""){
+    hide_next_siblings($(category.id));
+//    disable_next_siblings($(category.id));
 }
-else if ($(sub_category_id).val()==""){
-    hide_next_siblings($(sub_category_id));
-//    disable_next_siblings($(sub_category_id));
+else if ($(sub_category.id).val()==""){
+    hide_next_siblings($(sub_category.id));
+//    disable_next_siblings($(sub_category.id));
+}
+else if ($(subsub_category.id).val()==""){
+    hide_next_siblings($(subsub_category.id));
+//    disable_next_siblings($(subsub_category.id));
+}
+else if ($(subsubsub_category.id).val()==""){
+    hide_next_siblings($(subsubsub_category.id));
+//    disable_next_siblings($(subsub_category.id));
 }
 
 $country.change(function() {
@@ -55,12 +77,20 @@ function update_form2($element_parent, $element_child, child_id){
   });
 }
 
-$(category_id).change(function(){    
-    update_form(category_id, sub_category_id, sub_category_url_action);
+$(category.id).change(function(){    
+    update_form(category.id, sub_category.id, sub_category.url_action);
 });
 
-$(sub_category_id).change(function(){    
-    update_form(sub_category_id, sub_sub_category_id, sub_sub_category_url_action);
+$(sub_category.id).change(function(){    
+    update_form(sub_category.id, subsub_category.id, subsub_category.url_action);
+});
+
+$(subsub_category.id).change(function(){    
+    update_form(subsub_category.id, subsubsub_category.id, subsubsub_category.url_action);
+});
+
+$(subsubsub_category.id).change(function(){    
+    update_form(subsubsub_category.id, furthersub_category.id, furthersub_category.url_action);
 });
 
 function update_form(parent_id, child_id, url_action){ 
@@ -78,13 +108,16 @@ function update_form(parent_id, child_id, url_action){
                         var options=create_select_options(response.data);
                         $(child_id).append(options);
 //                        $(child_id).removeAttr("disabled");
-                        $(child_id).parent('div').parent('div').show();
-                        
+                        $(child_id).parent('div').parent('div').show();                        
                     }
                     else{
 //                        disable_next_siblings($(parent_id));
-                          hide_next_siblings($(parent_id));
+                        hide_next_siblings($(parent_id));
                     }                    
+                }
+                else{
+//                        disable_next_siblings($(parent_id));
+                        hide_next_siblings($(parent_id));
                 }
           }
           ,

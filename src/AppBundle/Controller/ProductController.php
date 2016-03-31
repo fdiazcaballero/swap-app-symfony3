@@ -14,11 +14,18 @@ use AppBundle\Entity\Product\ProductTaxonomy;
 use AppBundle\Entity\User;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
+/**
+ * Product controller.
+ * @Route("/product")
+*/
 class ProductController extends Controller
 {
     
     /**
-     * @Route("/product/new", name="new_product")
+     * 
+     * Index Action
+     * 
+     * @Route("/new", name="new_product")
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      */
     public function productNewAction(Request $request)
@@ -59,24 +66,8 @@ class ProductController extends Controller
                 'form' => $form->createView(),
             )); 
 //        }
-    }
+    }   
     
-    /**
-     * @Route("/product/ajax/get_sub_categories_form", name="get_sub_categories_form")
-     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
-     */
-    public function productAjaxGetSubCategoriesFormAction(Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $subcategories = $em->getRepository('AppBundle:Taxonomy\SubCategory')
-            ->findByParentId($request->request->get('parent', '1'));
-        
-        if ($request->isXMLHttpRequest()) {         
-            return new JsonResponse(array('data' => $subcategories , 'is_success' => true));
-        }
-
-        return new Response('This is not ajax!', 400);
-    }
 }
 
 
