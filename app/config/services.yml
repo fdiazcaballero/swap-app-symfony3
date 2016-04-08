@@ -7,3 +7,16 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    slugger:
+        class: AppBundle\Utils\Slugger
+    markdown:
+        class: AppBundle\Utils\Markdown
+
+    # These are the Twig extensions that create new filters and functions for
+    # using them in the templates
+    app.twig.app_extension:
+        public:    false
+        class:     AppBundle\Twig\AppExtension
+        arguments: ['@markdown']
+        tags:
+            - { name: twig.extension }

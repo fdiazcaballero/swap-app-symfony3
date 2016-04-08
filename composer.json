@@ -28,7 +28,9 @@
         "leafo/scssphp": "^0.6.3",
         "patchwork/jsqueeze": "~1.0",
         "vich/uploader-bundle": "dev-master",
-        "friendsofsymfony/jsrouting-bundle": "^1.6"
+        "friendsofsymfony/jsrouting-bundle": "^1.6",
+        "white-october/pagerfanta-bundle": "^1.0",
+        "erusev/parsedown": "^1.6"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

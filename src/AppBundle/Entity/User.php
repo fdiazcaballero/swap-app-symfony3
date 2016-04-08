@@ -35,11 +35,11 @@ class User extends BaseUser
     /**
      * Add product
      *
-     * @param \AppBundle\Entity\Product $product
+     * @param \AppBundle\Entity\Product\Product $product
      *
      * @return User
      */
-    public function addProduct(\AppBundle\Entity\Product $product)
+    public function addProduct(\AppBundle\Entity\Product\Product $product)
     {
         $this->products[] = $product;
 
@@ -49,9 +49,9 @@ class User extends BaseUser
     /**
      * Remove product
      *
-     * @param \AppBundle\Entity\Product $product
+     * @param \AppBundle\Entity\Product\Product $product
      */
-    public function removeProduct(\AppBundle\Entity\Product $product)
+    public function removeProduct(\AppBundle\Entity\Product\Product $product)
     {
         $this->products->removeElement($product);
     }

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'blog_index' %}
+
+{% block main %}
+    {% for product in products %}
+        <article class="product">
+            <h2>
+{#                <a href="{{ path('blog_post', { slug: post.slug }) }}">#}
+                    {{ product.name }}
+                </a>
+            </h2>
+
+            {{ product.description|md2html }}
+        </article>
+    {% else %}
+        <div class="well">{#{{ 'post.no_posts_found'|trans }}#}No products found</div>
+    {% endfor %}
+
+    <div class="navigation text-center">
+        {{ pagerfanta(products, 'twitter_bootstrap3', { routeName: 'blog_index_paginated' }) }}
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+
+   {# {{ show_source_code(_self) }}#}
+{% endblock %}

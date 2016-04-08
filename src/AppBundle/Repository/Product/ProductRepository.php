@@ -2,6 +2,10 @@
 
 //namespace AppBundle\Entity;
 namespace AppBundle\Repository\Product;
+use AppBundle\Entity\Product\Product;
+use Doctrine\ORM\Query;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
 
 /**
  * ProductRepository
@@ -19,4 +23,34 @@ class ProductRepository extends \Doctrine\ORM\EntityRepository
             )
             ->getResult();
     }    
+    
+    /**
+     * @return Query
+     */
+    public function queryLatest()
+    {
+        return $this->getEntityManager()
+            ->createQuery('
+                SELECT p
+                FROM AppBundle:Product\Product p
+                WHERE p.createdAt <= :now
+                ORDER BY p.createdAt DESC
+            ')
+            ->setParameter('now', new \DateTime())
+        ;
+    }
+
+    /**
+     * @param int $page
+     *
+     * @return Pagerfanta
+     */
+    public function findLatest($page = 1)
+    {
+        $paginator = new Pagerfanta(new DoctrineORMAdapter($this->queryLatest(), false));
+        $paginator->setMaxPerPage(Product::NUM_ITEMS);
+        $paginator->setCurrentPage($page);
+
+        return $paginator;
+    }
 }

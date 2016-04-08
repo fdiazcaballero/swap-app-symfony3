@@ -8,23 +8,10 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Symfony Demo application{% endblock %}</title>
-
-        {% block stylesheets %}
-{#         uncomment the following lines to compile SCSS assets with Assetic#}
-
-            {% stylesheets filter="scssphp" output="css/app.css"
-                "scss/bootstrap-flatly.scss"
-                "scss/font-awesome.scss"
-                "css/thirdparty/*.css"
-                "scss/main.scss"
-            %}
-                <link rel="stylesheet" href="{{ asset_url }}" />
-            {% endstylesheets %}
         
-
-            <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        {% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">        
+        
+{#        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />#}
     </head>
 
     <body id="{% block body_id %}{% endblock %}">
@@ -99,13 +86,13 @@
                     </div>
 
                     <div id="sidebar" class="col-sm-3">
-                        {% block sidebar %}
+                        {#{% block sidebar %}
                             {{ render_esi(controller('FrameworkBundle:Template:template', {
                                 'template': 'blog/about.html.twig',
                                 'sharedAge': 600,
                                 '_locale': app.request.locale
                             })) }}
-                        {% endblock %}
+                        {% endblock %}#}
                     </div>
                 </div>
             {% endblock %}
@@ -133,7 +120,7 @@
 
         {% block javascripts %}
 {#         uncomment the following lines to combine and minimize JavaScript assets with Assetic#}
-            {% javascripts filter="?jsqueeze" output="js/app.js"
+            {#{% javascripts filter="?jsqueeze" output="js/app.js"
                 "js/thirdparty/jquery-2.2.1.js"
                 "js/thirdparty/moment.min.js"
                 "js/thirdparty/bootstrap-3.3.4.js"
@@ -141,7 +128,7 @@
                 "js/thirdparty/bootstrap-datetimepicker.min.js"
                 "js/thirdparty/main.js" %}
                 <script src="{{ asset_url }}"></script>
-            {% endjavascripts %}
+            {% endjavascripts %}#}
         
 
             <script src="{{ asset('js/app.js') }}"></script>

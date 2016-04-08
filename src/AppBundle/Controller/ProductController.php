@@ -6,6 +6,9 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Form\Type\ProductType;
 use AppBundle\Entity\Product\Product;
@@ -66,7 +69,20 @@ class ProductController extends Controller
                 'form' => $form->createView(),
             )); 
 //        }
-    }   
+    }  
+    
+    /**
+     * @Route("/", defaults={"page": 1}, name="blog_index")
+     * @Route("/page/{page}", requirements={"page": "[1-9]\d*"}, name="blog_index_paginated")
+     * @Method("GET")
+     * @Cache(smaxage="10")
+     */
+    public function indexAction($page)
+    {
+        $products = $this->getDoctrine()->getRepository('AppBundle:Product\Product')->findLatest($page);
+
+        return $this->render('Product/index.html.twig', array('products' => $products));
+    }
     
 }
 
