@@ -30,7 +30,9 @@
         "vich/uploader-bundle": "dev-master",
         "friendsofsymfony/jsrouting-bundle": "^1.6",
         "white-october/pagerfanta-bundle": "^1.0",
-        "erusev/parsedown": "^1.6"
+        "erusev/parsedown": "^1.6",
+        "friendsofsymfony/rest-bundle": "^1.7",
+        "jms/serializer-bundle": "^1.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

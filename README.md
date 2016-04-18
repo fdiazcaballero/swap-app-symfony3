@@ -38,7 +38,7 @@ This project uses the following bundles:
   * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
     integration  
 
-  *	**FOSUserBundle** 
+  * **FOSUserBundle** 
   
   * **DoctrineMigrationsBundle**
   
@@ -49,6 +49,10 @@ This project uses the following bundles:
   * **VichUploaderBundle**
   
   * **FOSJsRoutingBundle**
+
+  * **FOSRestBundle**
+
+  * **JMSSerializerBundle**
 
 [1]:  https://symfony.com/doc/3.0/book/installation.html
 [6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
