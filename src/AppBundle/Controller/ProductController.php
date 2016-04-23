@@ -31,7 +31,7 @@ class ProductController extends Controller
      * @Route("/new", name="new_product")
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      */
-    public function productNewAction(Request $request)
+    public function newAction(Request $request)
     {
     // http://stackoverflow.com/questions/23409600/symfony2-dropdown-form-from-database    
         
@@ -60,6 +60,7 @@ class ProductController extends Controller
             $em->persist($productLocation);
             $em->persist($productTaxonomy);
             $em->flush();
+            return $this->redirectToRoute('blog_index');
         }
         
 //        if($request->isXmlHttpRequest()) {
@@ -82,6 +83,92 @@ class ProductController extends Controller
         $products = $this->getDoctrine()->getRepository('AppBundle:Product\Product')->findLatest($page);
 
         return $this->render('Product/index.html.twig', array('products' => $products));
+    }
+    
+   /**
+     * Displays a form to edit an existing Product entity.
+     *
+     * @Route("/{id}/edit", requirements={"id": "\d+"}, name="admin_product_edit")
+     * @Method({"GET", "POST"})
+     */
+    public function editAction(Product $product, Request $request)
+    {
+//        if (null === $this->getUser() || !$product->isOwner($this->getUser())) {
+//            throw $this->createAccessDeniedException('Products can only be edited by their authors.');
+//        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $editForm = $this->createForm('AppBundle\Form\Type\ProductType', $product);
+        $deleteForm = $this->createDeleteForm($product);
+
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+//            $product->setSlug($this->get('slugger')->slugify($product->getTitle()));
+            $entityManager->flush();
+
+//            $this->addFlash('success', 'product.updated_successfully');
+
+            return $this->redirectToRoute('admin_product_edit', array('id' => $product->getId()));
+        }
+
+        return $this->render('admin/blog/edit.html.twig', array(
+            'product'        => $product,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
+     * Deletes a Product entity.
+     *
+     * @Route("/{id}", name="admin_product_delete")
+     * @Method("DELETE")
+     * @Security("product.isOwner(user)")
+     *
+     * The Security annotation value is an expression (if it evaluates to false,
+     * the authorization mechanism will prevent the user accessing this resource).
+     * The isAuthor() method is defined in the AppBundle\Entity\Product entity.
+     */
+    public function deleteAction(Request $request, Product $product)
+    {
+        $form = $this->createDeleteForm($product);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $entityManager->remove($product);
+            $entityManager->flush();
+
+//            $this->addFlash('success', 'product.deleted_successfully');
+        }
+
+//        return $this->redirectToRoute('admin_product_index');
+        return $this->redirectToRoute('blog_index');
+    }
+
+    /**
+     * Creates a form to delete a Product entity by id.
+     *
+     * This is necessary because browsers don't support HTTP methods different
+     * from GET and POST. Since the controller that removes the blog products expects
+     * a DELETE method, the trick is to create a simple form that *fakes* the
+     * HTTP DELETE method.
+     * See http://symfony.com/doc/current/cookbook/routing/method_parameters.html.
+     *
+     * @param Product $product The product object
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm(Product $product)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('admin_product_delete', array('id' => $product->getId())))
+            ->setMethod('DELETE')
+            ->getForm()
+        ;
     }
     
 }

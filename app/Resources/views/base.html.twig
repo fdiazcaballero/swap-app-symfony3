@@ -8,8 +8,13 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Symfony Demo application{% endblock %}</title>
-        
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">        
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('css/app.css') }}">            
+            <!-- Latest compiled and minified CSS -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+            <!-- Optional theme -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+        {% endblock %}
         
 {#        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />#}
     </head>
@@ -54,11 +59,11 @@
                                 {% endblock %}
 
                                 {% if app.user %}
-                                    <li>
+ {#                                   <li>
                                         <a href="{{ path('logout') }}">
                                             <i class="fa fa-sign-out"></i> {{ 'menu.logout'|trans }}
                                         </a>
-                                    </li>
+                                    </li>#}
                                 {% endif %}
 
 {#                                <li class="dropdown">
@@ -79,21 +84,21 @@
         <div class="container body-container">
             {% block body %}
                 <div class="row">
-                    <div id="main" class="col-sm-9">
+                    <div id="main" {#class="col-sm-9"#}>
                         {{ include('default/_flash_messages.html.twig') }}
 
                         {% block main %}{% endblock %}
                     </div>
 
-                    <div id="sidebar" class="col-sm-3">
-                        {#{% block sidebar %}
+{#                    <div id="sidebar" class="col-sm-3">
+                        {% block sidebar %}
                             {{ render_esi(controller('FrameworkBundle:Template:template', {
                                 'template': 'blog/about.html.twig',
                                 'sharedAge': 600,
                                 '_locale': app.request.locale
                             })) }}
-                        {% endblock %}#}
-                    </div>
+                        {% endblock %}
+                    </div>#}
                 </div>
             {% endblock %}
         </div>
@@ -130,8 +135,15 @@
                 <script src="{{ asset_url }}"></script>
             {% endjavascripts %}#}
         
-
+            {% javascripts 
+                '@jquery_and_ui' 
+            %}
             <script src="{{ asset('js/app.js') }}"></script>
+            <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+            <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+            <!-- Latest compiled and minified JavaScript -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+            {% endjavascripts %}
         {% endblock %}
 
 {#        <!-- Page rendered on {{ 'now'|localizeddate('long', 'long') }} -->#}

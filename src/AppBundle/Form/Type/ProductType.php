@@ -12,6 +12,7 @@ use AppBundle\Entity\Product\ProductTaxonomy;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use AppBundle\Form\EventListener\AddNameFieldSubscriber;
 //use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class ProductType extends AbstractType
@@ -20,7 +21,7 @@ class ProductType extends AbstractType
     {
         //http://symfony.com/doc/current/reference/forms/types/entity.html
         $builder
-            ->add('name')
+            ->addEventSubscriber(new AddNameFieldSubscriber())
             ->add('description')            
             ->add('productCondition', EntityType::class, array(
                 'choice_label' => 'name',

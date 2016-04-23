@@ -491,4 +491,16 @@ class Product
     {
         return $this->updatedAt;
     }
+    
+     /**
+     * Is the given User the owner of this Product?
+     *
+     * @param User $user
+     *
+     * @return bool
+     */
+    public function isOwner(\AppBundle\Entity\User $user)
+    {
+        return $user->getId() === $this->getUser();
+    }
 }

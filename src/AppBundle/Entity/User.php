@@ -31,6 +31,16 @@ class User extends BaseUser
         // your own logic
         $this->products = new ArrayCollection();
     }
+    
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Add product
