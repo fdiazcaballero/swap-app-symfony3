@@ -28,7 +28,7 @@ class ProductController extends Controller
      * 
      * Index Action
      * 
-     * @Route("/new", name="new_product")
+     * @Route("/new", name="admin_product_new")
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      */
     public function newAction(Request $request)
@@ -66,7 +66,7 @@ class ProductController extends Controller
 //        if($request->isXmlHttpRequest()) {
 //            return json_encode($form->createView());
 //        } else {        
-            return $this->render('Form/product_new.html.twig', array(
+            return $this->render('admin/blog/new.html.twig', array(
                 'form' => $form->createView(),
             )); 
 //        }
@@ -82,7 +82,7 @@ class ProductController extends Controller
     {
         $products = $this->getDoctrine()->getRepository('AppBundle:Product\Product')->findLatest($page);
 
-        return $this->render('Product/index.html.twig', array('products' => $products));
+        return $this->render('admin/blog//index.html.twig', array('products' => $products));
     }
     
    /**
@@ -108,14 +108,14 @@ class ProductController extends Controller
 //            $product->setSlug($this->get('slugger')->slugify($product->getTitle()));
             $entityManager->flush();
 
-//            $this->addFlash('success', 'product.updated_successfully');
+            $this->addFlash('success', 'Product Updated Successfully');
 
-            return $this->redirectToRoute('admin_product_edit', array('id' => $product->getId()));
+            return $this->redirectToRoute('blog_index');
         }
 
         return $this->render('admin/blog/edit.html.twig', array(
             'product'        => $product,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -169,6 +169,29 @@ class ProductController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+    
+     /**
+     * Finds and displays a Product entity.
+     *
+     * @Route("/{id}", requirements={"id": "\d+"}, name="admin_product_show")
+     * @Method("GET")
+     */
+    public function showAction(Product $product)
+    {
+        // This security check can also be performed:
+        //   1. Using an annotation: @Security("post.isAuthor(user)")
+        //   2. Using a "voter" (see http://symfony.com/doc/current/cookbook/security/voters_data_permission.html)
+//        if (null === $this->getUser() || !$post->isOwner($this->getUser())) {
+//            throw $this->createAccessDeniedException('Posts can only be shown to their authors.');
+//        }
+
+        $deleteForm = $this->createDeleteForm($product);
+
+        return $this->render('admin/blog/show.html.twig', array(
+            'product'        => $product,
+            'delete_form' => $deleteForm->createView(),
+        ));
     }
     
 }

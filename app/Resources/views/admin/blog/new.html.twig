@@ -1,29 +1,46 @@
-{% extends 'admin/layout.html.twig' %}
+{% extends 'base.html.twig' %}
+{# app/Resources/views/default/newProduct.html.twig #}
 
-{% block body_id 'admin_post_new' %}
-
+{% block body_id 'new_product' %}
 {% block main %}
-    <h1>{{ 'title.post_new'|trans }}</h1>
+{% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
 
-    {{ form_start(form) }}
-        {{ form_row(form.title) }}
-        {{ form_row(form.summary) }}
-        {{ form_row(form.content) }}
-        {{ form_row(form.authorEmail) }}
-        {{ form_row(form.publishedAt) }}
+<div class="page-header text-center">
+  <h1>Add a new product <small>SwapApp</small></h1>
+</div>
 
-        <input type="submit" value="{{ 'label.create_post'|trans }}" class="btn btn-primary" />
-
-        {{ form_widget(form.saveAndCreateNew, { label: 'label.save_and_create_new', attr: { class: 'btn btn-primary' } }) }}
-
-        <a href="{{ path('admin_post_index') }}" class="btn btn-link">
-            {{ 'action.back_to_list'|trans }}
-        </a>
-    {{ form_end(form) }}
+<div class="row">
+  <div class="col-xs-1 col-sm-2 col-md-3 col-lg-3"></div>
+  <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6">        
+        {{ form_start(form) }}
+        {#{{ form_widget(form) }}#}
+        {{ form_row(form.name) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.productCondition) }}
+        {{ form_row(form.imageFile) }}
+        {{ form_row(form.productLocation) }}
+        {{ form_row(form.productTaxonomy) }}        
+        {{ form_end(form) }}
+  </div>
+  <!-- Optional: clear the XS cols if their content doesn't match in height -->
+  <div class="clearfix visible-xs-block"></div>
+  <div class="col-xs-1 col-sm-2 col-md-3 col-lg-3"></div>
+</div>
 {% endblock %}
-
-{% block sidebar %}
+{#{% block sidebar %}
     {{ parent() }}
 
     {{ show_source_code(_self) }}
+{% endblock %}#}
+
+
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts 
+        'js/Product/product_form.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+{% endjavascripts %}
 {% endblock %}
+

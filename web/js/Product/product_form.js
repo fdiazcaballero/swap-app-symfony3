@@ -28,16 +28,22 @@ if ($(category.id).val()==""){
 //    disable_next_siblings($(category.id));
 }
 else if ($(sub_category.id).val()==""){
+    update_form(category.id, sub_category.id, sub_category.url_action);
     hide_next_siblings($(sub_category.id));
 //    disable_next_siblings($(sub_category.id));
 }
 else if ($(subsub_category.id).val()==""){
+    update_form(sub_category.id, subsub_category.id, subsub_category.url_action);
     hide_next_siblings($(subsub_category.id));
 //    disable_next_siblings($(subsub_category.id));
 }
 else if ($(subsubsub_category.id).val()==""){
+    update_form(subsub_category.id, subsubsub_category.id, subsubsub_category.url_action);
     hide_next_siblings($(subsubsub_category.id));
 //    disable_next_siblings($(subsub_category.id));
+}
+else{
+    update_form(subsubsub_category.id, furthersub_category.id, furthersub_category.url_action);
 }
 
 $country.change(function() {

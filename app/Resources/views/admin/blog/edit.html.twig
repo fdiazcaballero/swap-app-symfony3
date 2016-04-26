@@ -1,28 +1,31 @@
 {% extends 'admin/layout.html.twig' %}
 
 {% block body_id 'admin_product_edit' %}
+    {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
 
 {% block main %}
-    <h1>{{ 'title.edit_product'|trans({'%id%': product.id}) }}</h1>
-
-    {{ include('admin/blog/_form.html.twig', {
-        form: edit_form,
-        button_label: 'action.save'|trans,
-        include_back_to_home_link: false,
-    }, with_context = false) }}
-{% endblock %}
-
-{#{% block sidebar %}
-    <div class="section actions">
-        {{ include('admin/blog/_form.html.twig', {
-            form: delete_form,
-            button_label: 'action.delete_post'|trans,
-            button_css: 'btn btn-lg btn-block btn-danger',
-            show_confirmation: true,
-        }, with_context = false) }}
+    <div class="page-header text-center">
+        <h1>Edit product: <i>{{product.name}}</i> <small>SwapApp</small></h1>
     </div>
 
-    {{ parent() }}
+<div class="row">
+  <div class="col-xs-1 col-sm-2 col-md-3 col-lg-3"></div>
+  <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6">        
+        {{ form_start(form, { attr: attr|default({}) }) }}
+        {{ form_widget(form) }}    
+        {{ form_end(form) }}
+  </div>
+  <!-- Optional: clear the XS cols if their content doesn't match in height -->
+  <div class="clearfix visible-xs-block"></div>
+  <div class="col-xs-1 col-sm-2 col-md-3 col-lg-3"></div>
+</div>
+{% endblock %}
 
-    {{ show_source_code(_self) }}
-{% endblock %}#}
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts 
+        'js/Product/product_form.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+{% endblock %}
